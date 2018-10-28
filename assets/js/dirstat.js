@@ -47,8 +47,12 @@ var app = new Vue({
             this.$http.get('stat?path=' + this.dir).then(function (data) {
                 var entry = data.body;
                 this.path = [entry];
+                document.getElementById('treemap-container').innerHTML = '';
                 this.graph = new d3plus.Treemap()
-                    .select('#treemap')
+                    .select('#treemap-container')
+                    .detectResize(true)
+                    .detectResizeDelay(250)
+                    .height(640)
                     .data(this.entries)
                     .groupBy('name').sum(this.mode)
                     .tooltipConfig({
