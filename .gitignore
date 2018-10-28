@@ -1,0 +1,19 @@
+#
+# .gitignore
+#
+
+# dep
+vendor/
+
+# Node.js
+node_modules/
+
+# Binaries
+*.exe
+
+# Minified scripts & styles
+web/*.min.*
+
+# IDE
+*.iml
+.idea/
