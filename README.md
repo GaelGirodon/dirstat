@@ -55,7 +55,7 @@ npm run build
 
 1. Start the release: `git flow release start X.Y.Z`
 2. Update the version number in [`package.json`](package.json)
-3. Commit changes: `git commit -m "Bump the version number to X.Y.Z"`
+3. Commit changes: `git commit -m "Bump the version number"`
 4. Finish the release: `git flow release finish X.Y.Z`
 5. Push to the repository: `git push --all origin && git push --tags`
 

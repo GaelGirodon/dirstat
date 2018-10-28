@@ -1,6 +1,6 @@
 {
   "name": "dir-stat",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Simple directory statistics",
   "scripts": {
     "build:assets": "gulp",
