@@ -81,6 +81,7 @@ func statHandler(res http.ResponseWriter, req *http.Request) {
 
 // Send a success response with a body content
 func sendSuccess(res http.ResponseWriter, body []byte) {
+	log.Println("OK")
 	res.Header().Set("Content-Type", "application/json")
 	res.WriteHeader(http.StatusOK)
 	res.Write(body)
