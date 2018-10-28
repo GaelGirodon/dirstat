@@ -65,7 +65,8 @@ var app = new Vue({
                 this.processing = false;
             }).catch(function (err) {
                 this.processing = false;
-                this.error = 'Unable to analyse the given directory: ' + err.body.message;
+                this.error = 'Unable to scan the given directory'
+                    + (err.body.message ? ': ' + err.body.message : '') + '.';
             });
         },
         // Map entry stats to a string
