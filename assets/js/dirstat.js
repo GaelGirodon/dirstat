@@ -47,8 +47,12 @@ var app = new Vue({
             this.$http.get('stat?path=' + this.dir).then(function (data) {
                 var entry = data.body;
                 this.path = [entry];
+                document.getElementById('treemap-container').innerHTML = '';
                 this.graph = new d3plus.Treemap()
-                    .select('#treemap')
+                    .select('#treemap-container')
+                    .detectResize(true)
+                    .detectResizeDelay(250)
+                    .height(640)
                     .data(this.entries)
                     .groupBy('name').sum(this.mode)
                     .tooltipConfig({
@@ -61,13 +65,15 @@ var app = new Vue({
                 this.processing = false;
             }).catch(function (err) {
                 this.processing = false;
-                this.error = 'Unable to analyse the given directory: ' + err.body.message;
+                this.error = 'Unable to scan the given directory'
+                    + (err.body.message ? ': ' + err.body.message : '') + '.';
             });
         },
         // Map entry stats to a string
         mapStats: function (d) {
-            return Math.round(d.size / (1024 * 1024)) + ' MB'
-                + ' / ' + d.count + ' entries / depth ' + d.depth
+            return '<strong>Size:</strong> ' + Math.round(d.size / (1024 * 1024)) + ' MB<br>'
+                + '<strong>Count:</strong> ' + d.count + ' entries<br>'
+                + '<strong>Depth:</strong> ' + d.depth
         },
         // Render the tree map
         renderTreemap: function () {
