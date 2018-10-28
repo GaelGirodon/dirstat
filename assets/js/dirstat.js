@@ -70,8 +70,9 @@ var app = new Vue({
         },
         // Map entry stats to a string
         mapStats: function (d) {
-            return Math.round(d.size / (1024 * 1024)) + ' MB'
-                + ' / ' + d.count + ' entries / depth ' + d.depth
+            return '<strong>Size:</strong> ' + Math.round(d.size / (1024 * 1024)) + ' MB<br>'
+                + '<strong>Count:</strong> ' + d.count + ' entries<br>'
+                + '<strong>Depth:</strong> ' + d.depth
         },
         // Render the tree map
         renderTreemap: function () {
