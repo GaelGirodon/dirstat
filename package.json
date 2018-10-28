@@ -1,0 +1,35 @@
+{
+  "name": "dir-stat",
+  "version": "0.1.0",
+  "description": "Simple directory statistics",
+  "scripts": {
+    "build:assets": "gulp",
+    "build": "npm run build:assets && packr build -i -o dirstat.exe .",
+    "ensure": "npm install && dep ensure",
+    "start": "dirstat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaelGirodon/dir-stat.git"
+  },
+  "author": "Gaël Girodon",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/GaelGirodon/dir-stat/issues"
+  },
+  "homepage": "https://github.com/GaelGirodon/dir-stat#readme",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "d3plus": "^2.0.0-alpha.17",
+    "vue": "^2.5.17",
+    "vue-resource": "^1.5.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
+    "node-sass": "^4.9.4"
+  }
+}
