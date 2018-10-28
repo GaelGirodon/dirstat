@@ -14,7 +14,7 @@ where your disk space has gone to help you to clean it up.
 1. Download the [latest release](https://github.com/GaelGirodon/dir-stat/releases)
 2. Start **DirStat**
 3. Set the path of the directory to scan
-4. Click on the 🔍 **Scan** button
+4. Click on the <kbd>**Scan**</kbd> button (or press <kbd>Enter</kbd>)
 5. Navigate in the treemap to show where your disk space has gone
 
 ### CLI usage
@@ -30,8 +30,11 @@ dirstat --port 8000
 Install global dependencies:
 
 - Node.js >= 8
+- NPM >= 5
 - Go >= 1.11
+- [Dep](https://github.com/golang/dep) >= 0.5.0
 - [Packr](https://github.com/gobuffalo/packr) >= 1.15
+- PowerShell
 
 Then, install project dependencies:
 
