@@ -48,7 +48,7 @@ npm run build
 ### Package
 
 ```shell
-./scripts/package.ps1
+npm run package
 ```
 
 ### Release
