@@ -45,6 +45,12 @@ npm run ensure
 npm run build
 ```
 
+### Package
+
+```shell
+./scripts/package.ps1
+```
+
 ### Release
 
 1. Start the release: `git flow release start X.Y.Z`

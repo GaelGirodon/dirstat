@@ -10,6 +10,7 @@ node_modules/
 
 # Binaries
 *.exe
+release/
 
 # Minified scripts & styles
 web/*.min.*
