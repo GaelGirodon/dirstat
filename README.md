@@ -62,6 +62,11 @@ npm run package
 4. Finish the release: `git flow release finish X.Y.Z`
 5. Push to the repository: `git push --all origin && git push --tags`
 
+## Tasks
+
+- [ ] Auto-complete the directory path
+- [ ] Improve the treemap display
+
 ## License
 
 DirStat is licensed under the GNU General Public License.

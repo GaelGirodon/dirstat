@@ -20,18 +20,34 @@
     </header>
     <!-- Directory selection -->
     <section>
-        <!-- Directory path input -->
-        <div class="d-flex">
+        <!-- Scan options -->
+        <div class="form-inline">
+            <!-- Directory path -->
             <input class="form-control flex-grow-1" id="dir" :class="{'is-invalid': error}"
                    placeholder="Type here the path to the folder to analyse and click on the 'Scan' button or press Enter"
                    v-model="dir" :disabled="processing" @keyup.enter="scan">
+            <!-- Display only folders or files too -->
+            <div class="input-group ml-2">
+                <div class="input-group-prepend">
+                    <label for="includeFiles" class="input-group-text">Display</label>
+                </div>
+                <select class="custom-select" id="includeFiles" v-model="includeFiles">
+                    <option value="0" selected>Only folders</option>
+                    <option value="1">Files & folders</option>
+                </select>
+            </div>
+            <!-- Scan button -->
             <button type="button" class="btn btn-primary ml-2 px-3"
                     @click="scan" :disabled="processing">
                 &#x1F50D; Scan
             </button>
         </div>
-        <!-- Error message -->
-        <div class="text-danger" v-cloak v-if="error">{{ error }}</div>
+        <!-- Error message (invalid path) -->
+        <div class="alert alert-danger mt-3" v-cloak v-if="error">{{ error }}</div>
+        <!-- Warning message (root path) -->
+        <div class="alert alert-warning mt-3" v-cloak v-if="!error && processing && isRootPath">
+            <strong>Warning!</strong> You have chosen to scan a root folder, it may take a long time...
+        </div>
         <!-- Progress bar -->
         <div class="progress mt-3" v-cloak v-if="processing">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
@@ -41,27 +57,21 @@
     <!-- Navigation controls -->
     <section class="form-inline my-3" v-cloak v-show="graph">
         <!-- Back to the previous level -->
-        <div class="form-group">
-            <button type="button" class="btn btn-secondary" @click="back" :disabled="path.length <= 1">🡨</button>
-        </div>
+        <button type="button" class="btn btn-secondary" @click="back" :disabled="path.length <= 1">🡨</button>
         <!-- Path -->
-        <div class="form-group ml-2">
-            <ol id="path" class="breadcrumb my-0 py-2" v-cloak>
-                <li class="breadcrumb-item" v-for="entry in path">
-                    <a href="#" @click="backTo(entry)">{{ entry.name }}</a>
-                </li>
-            </ol>
-        </div>
+        <ol id="path" class="breadcrumb ml-2 my-0 py-2" v-cloak>
+            <li class="breadcrumb-item" v-for="entry in path">
+                <a href="#" @click="backTo(entry)">{{ entry.name }}</a>
+            </li>
+        </ol>
         <!-- Change tree map sum mode -->
-        <div class="form-group ml-auto">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <label for="mode" class="input-group-text">Mode</label>
-                </div>
-                <select class="custom-select" id="mode" v-model="mode" @change="renderTreemap">
-                    <option v-for="m in modes" :value="m">{{ m }}</option>
-                </select>
+        <div class="input-group ml-auto">
+            <div class="input-group-prepend">
+                <label for="mode" class="input-group-text">Mode</label>
             </div>
+            <select class="custom-select" id="mode" v-model="mode" @change="renderTreemap">
+                <option v-for="m in modes" :value="m">{{ m }}</option>
+            </select>
         </div>
     </section>
     <!-- Tree map -->

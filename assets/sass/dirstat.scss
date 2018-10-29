@@ -1,6 +1,3 @@
-/*
- * dirstat.scss
- */
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 [v-cloak] {
@@ -16,4 +13,13 @@ body {
   border: solid 1px #ced4da;
   padding-top: 0.4rem !important;
   padding-bottom: 0.4rem !important;
+}
+
+.alert {
+  &.alert-warning {
+    border-color: darken(#ffeeba, 20%);
+  }
+  &.alert-danger {
+    border-color: darken(#f5c6cb, 15%);
+  }
 }
