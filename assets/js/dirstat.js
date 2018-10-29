@@ -20,7 +20,7 @@ var app = new Vue({
         // Tree map
         graph: null,
         // Tree map sum mode
-        mode: 'count'
+        mode: 'size'
     },
     // Computed properties
     computed: {
