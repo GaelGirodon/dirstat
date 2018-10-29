@@ -30,8 +30,12 @@
                 &#x1F50D; Scan
             </button>
         </div>
-        <!-- Error message -->
-        <div class="text-danger" v-cloak v-if="error">{{ error }}</div>
+        <!-- Error message (invalid path) -->
+        <div class="alert alert-danger mt-3" v-cloak v-if="error">{{ error }}</div>
+        <!-- Warning message (root path) -->
+        <div class="alert alert-warning mt-3" v-cloak v-if="!error && processing && isRootPath">
+            <strong>Warning!</strong> You have chosen to scan a root folder, it may take a long time...
+        </div>
         <!-- Progress bar -->
         <div class="progress mt-3" v-cloak v-if="processing">
             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"

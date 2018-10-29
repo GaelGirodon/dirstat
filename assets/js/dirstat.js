@@ -36,6 +36,10 @@ var app = new Vue({
         // Available modes
         modes: function () {
             return ['count', 'size', 'depth'];
+        },
+        // Indicate if the directory path is a root path
+        isRootPath: function () {
+            return this.dir && this.dir.match(/^([A-Z]:)?[\\\/]?[^\\\/]*[\\\/]?$/)
         }
     },
     // Methods
