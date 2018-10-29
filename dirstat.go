@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/gobuffalo/packr"
+	"github.com/phayes/freeport"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -17,11 +18,19 @@ import (
 
 func main() {
 	// CLI flags
-	portFlag := flag.Int("port", 8080, "HTTP server port")
+	portFlag := flag.Int("port", 0, "HTTP server port")
 	flag.Parse()
 
 	// HTTP server address
 	port := *portFlag
+	if port == 0 {
+		// No port provided: find a free one
+		if freePort, err := freeport.GetFreePort(); err != nil {
+			log.Fatalf("Failed to start DirStat HTTP server: unable to find a free port (%s)", err)
+		} else {
+			port = freePort
+		}
+	}
 	addr := fmt.Sprintf("127.0.0.1:%d", port)
 	url := fmt.Sprintf("http://%s", addr)
 
