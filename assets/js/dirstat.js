@@ -11,6 +11,8 @@ var app = new Vue({
     data: {
         // Path to the directory to scan
         dir: '',
+        // Indicate if the directory stats must also contain files stats
+        includeFiles: 0,
         // Scan request currently processing
         processing: false,
         // Request error
@@ -48,7 +50,7 @@ var app = new Vue({
         scan: function () {
             this.error = null;
             this.processing = true;
-            this.$http.get('stat?path=' + this.dir).then(function (data) {
+            this.$http.get('stat?path=' + this.dir + '&files=' + this.includeFiles).then(function (data) {
                 var entry = data.body;
                 this.path = [entry];
                 document.getElementById('treemap-container').innerHTML = '';
@@ -75,9 +77,13 @@ var app = new Vue({
         },
         // Map entry stats to a string
         mapStats: function (d) {
-            return '<strong>Size:</strong> ' + Math.round(d.size / (1024 * 1024)) + ' MB<br>'
-                + '<strong>Count:</strong> ' + d.count + ' entries<br>'
-                + '<strong>Depth:</strong> ' + d.depth
+            var desc = '<strong>Type:</strong> ' + d.type + '<br>'
+                + '<strong>Size:</strong> ' + Math.round(d.size / (1024 * 1024)) + ' MB<br>';
+            if (d.type === "Directory") {
+                desc += '<strong>Count:</strong> ' + d.count + ' entries<br>'
+                    + '<strong>Depth:</strong> ' + d.depth
+            }
+            return desc;
         },
         // Render the tree map
         renderTreemap: function () {

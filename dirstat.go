@@ -71,15 +71,16 @@ func main() {
 // Handle GET /stat
 // Calculate directory statistics and return them as JSON
 func statHandler(res http.ResponseWriter, req *http.Request) {
-	// Get path query param
+	// Query parameters
 	path := req.URL.Query().Get("path")
+	includeFiles := req.URL.Query().Get("files") == "1"
 	if path == "" {
 		sendError(res, http.StatusBadRequest, "The path can't be empty")
 		return
 	} // else
 	// Calculate statistics for the given directory path
 	log.Printf("Scanning directory '%s'...", path)
-	if stat, err := scanDir(path); err != nil { // Scan failed
+	if stat, err := scanDir(path, includeFiles); err != nil { // Scan failed
 		sendError(res, http.StatusBadRequest, "Failed scanning directory ("+err.Error()+")")
 	} else if output, err := json.Marshal(stat); err != nil { // Marshalling failed
 		sendError(res, http.StatusInternalServerError, "Failed encoding statistics to JSON ("+err.Error()+")")
@@ -116,33 +117,40 @@ type ErrorMessage struct {
 //
 
 // Directory statistics structure.
-type DirStat struct {
-	Path     string    `json:"path"`
-	Name     string    `json:"name"`
-	Count    int       `json:"count"`
-	Size     int64     `json:"size"`
-	Depth    int       `json:"depth"`
-	Children []DirStat `json:"children"`
+type EntryStat struct {
+	Path     string      `json:"path"`
+	Name     string      `json:"name"`
+	Type     string      `json:"type"`
+	Count    int         `json:"count"`
+	Size     int64       `json:"size"`
+	Depth    int         `json:"depth"`
+	Children []EntryStat `json:"children"`
 }
 
-// Create a new directory statistics object
+// Create a new entry statistics object for a directory
 // from a directory path and set default values.
-func NewDirStat(path string) *DirStat {
-	return &DirStat{Path: path, Name: fp.Base(path), Count: 0, Size: 0,
-		Depth: 0, Children: []DirStat{}}
+func NewDirectoryStat(path string) *EntryStat {
+	return &EntryStat{Path: path, Name: fp.Base(path), Type: "Directory",
+		Count: 0, Size: 0, Depth: 0, Children: []EntryStat{}}
+}
+
+// Create a new entry statistics object for a file.
+func NewFileStat(path string, name string, size int64) *EntryStat {
+	return &EntryStat{Name: name, Path: path, Type: "File", Size: size,
+		Count: 0, Depth: 0, Children: []EntryStat{}}
 }
 
 // Append a child directory statistics object
 // to the current directory statistics.
-func (stat *DirStat) append(childStat DirStat) {
+func (stat *EntryStat) append(childStat EntryStat) {
 	stat.Children = append(stat.Children, childStat)
 	stat.Size += childStat.Size
 	stat.Count += childStat.Count
 }
 
 // Calculate directory statistics recursively.
-func scanDir(path string) (stat *DirStat, err error) {
-	stat = NewDirStat(path)
+func scanDir(path string, includeFiles bool) (stat *EntryStat, err error) {
+	stat = NewDirectoryStat(path)
 	files, err := ioutil.ReadDir(path)
 	if err != nil {
 		msg := fmt.Sprintf("Failed reading directory '%s'", path)
@@ -155,13 +163,18 @@ func scanDir(path string) (stat *DirStat, err error) {
 		childPath := fp.Join(path, file.Name())
 		if file.IsDir() {
 			// Recursive call for directories
-			if childStat, err := scanDir(childPath); err == nil {
+			if childStat, err := scanDir(childPath, includeFiles); err == nil {
 				// Error is ignored
 				stat.append(*childStat)
 			}
 		} else if file.Mode().IsRegular() {
-			// Append file size
-			stat.Size += file.Size()
+			if includeFiles {
+				// Append whole file stats
+				stat.append(*NewFileStat(childPath, file.Name(), file.Size()))
+			} else {
+				// Only append file size
+				stat.Size += file.Size()
+			}
 		}
 	}
 	// Compute directory depth
