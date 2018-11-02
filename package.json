@@ -4,9 +4,10 @@
   "description": "Simple directory statistics",
   "scripts": {
     "build:assets": "gulp",
+    "build:dev": "npm run build:assets && go build dirstat.go",
     "build": "npm run build:assets && packr build -i -o dirstat.exe .",
     "ensure": "npm install && dep ensure",
-    "start": "npm run build && dirstat",
+    "start": "npm run build:dev && dirstat",
     "package": "powershell.exe ./scripts/package.ps1"
   },
   "repository": {
