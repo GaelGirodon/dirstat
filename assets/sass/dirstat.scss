@@ -1,13 +1,36 @@
 @import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+// Vue.js
 [v-cloak] {
   display: none;
 }
 
+// Page structure
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
+  margin-bottom: 80px;
   background: #f5f5f5;
 }
 
+// Footer
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  div.container {
+    border-top: solid 1px #e5e5e5;
+    padding: 12px 4px;
+  }
+  .icon {
+    font-size: x-large;
+  }
+}
+
+// Breadcrumb customization
 .breadcrumb {
   background: #ffffff;
   border: solid 1px #ced4da;
@@ -15,6 +38,7 @@ body {
   padding-bottom: 0.4rem !important;
 }
 
+// Alerts customization
 .alert {
   &.alert-warning {
     border-color: darken(#ffeeba, 20%);
