@@ -66,6 +66,7 @@ npm run package
 
 - [ ] Auto-complete the directory path
 - [ ] Improve the treemap display
+- [ ] Harmonize folder naming (directory, folder...)
 
 ## License
 
