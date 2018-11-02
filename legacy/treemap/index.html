@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Directory stats tree map</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!-- Style -->
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<!-- Main container -->
+<div id="app" class="container">
+    <!-- Header -->
+    <header>
+        <h1 class="my-4 display-4">Directory stats tree map</h1>
+        <form class="form-inline my-3">
+            <!-- Back to previous level -->
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" @click="back" :disabled="path.length <= 1">🡨</button>
+            </div>
+            <!-- Path -->
+            <div class="form-group ml-2">
+                <ol id="path" class="breadcrumb my-0 py-2" v-cloak>
+                    <li class="breadcrumb-item" v-for="entry in path">
+                        <a href="#" @click="backTo(entry)">{{ entry.name }}</a>
+                    </li>
+                </ol>
+            </div>
+            <!-- Change tree map sum mode -->
+            <div class="form-group ml-auto">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label for="mode" class="input-group-text">Mode</label>
+                    </div>
+                    <select class="custom-select" id="mode" v-model="mode" @change="renderTreemap">
+                        <option v-for="m in modes" :value="m">{{ m }}</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </header>
+    <!-- Tree map -->
+    <div v-cloak>
+        <svg id="treemap" width="100%" height="75vh"></svg>
+    </div>
+</div>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+<script src="https://d3plus.org/js/d3plus.v2.0.0-alpha.17.full.min.js"></script>
+<script src="treemap.js"></script>
+</body>
+</html>
