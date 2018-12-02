@@ -28,10 +28,10 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-clean-css": "^3.10.0",
+    "gulp-clean-css": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.1",
-    "node-sass": "^4.9.4"
+    "node-sass": "^4.10.0"
   }
 }
