@@ -2,28 +2,36 @@
 
 
 [[projects]]
-  digest = "1:72139cbee5a41ff8a322681be104aa8d7e7c92a5f3ad5501ea3505042b050b57"
+  digest = "1:07829a6a0523929f5edc92b2a2dbb05ef3f335780bac9f06c44aa27c6cfc467a"
   name = "github.com/gobuffalo/envy"
   packages = ["."]
   pruneopts = "UT"
-  revision = "e0b181c424e7ca1a36f6f2db4bdfd25ef3421e77"
-  version = "v1.6.7"
+  revision = "7e7ddcbb431d1d9e32121d7eeee8d68bdecd7081"
+  version = "v1.6.10"
 
 [[projects]]
   branch = "master"
-  digest = "1:85ddc26efaf04eb9af4d1053ff47e228d3e54defa97a41cf775718fdec29f907"
+  digest = "1:a5b87cc8e6e9d842be6bcf371991b47ca2a15ca2b763f620518ab37d841a78c6"
   name = "github.com/gobuffalo/packd"
   packages = ["."]
   pruneopts = "UT"
-  revision = "7ae579e6d213dc991ed29e86e8d9484bd41f670f"
+  revision = "311c6248e5fbdcd13b3ce364f00073506d8154e6"
 
 [[projects]]
-  digest = "1:e9338b1991d0308276caec9f370e996a2819f6385e11ce2a9ff442c7656f80a1"
+  digest = "1:05f90e1f4ad8f5ba56e4367b70183410fb6584390e06ed7dc79be3500ca54600"
   name = "github.com/gobuffalo/packr"
   packages = ["."]
   pruneopts = "UT"
-  revision = "5f6de44620e6028e94dd8f1a675086cbebc8fd4b"
-  version = "v1.15.1"
+  revision = "ba3c3ae9169fdc7b283f00a4b4c39346e444871c"
+  version = "v1.21.5"
+
+[[projects]]
+  branch = "master"
+  digest = "1:da425896866b704cec05178819d7f31c7d5dad4d705403607b971b326bc7fea3"
+  name = "github.com/gobuffalo/syncx"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "558ac7de985fc4f4057bff27c7bdf99e92fe0750"
 
 [[projects]]
   digest = "1:ecd9aa82687cf31d1585d4ac61d0ba180e42e8a6182b85bd785fcca8dfeefc1b"
@@ -56,6 +64,18 @@
   pruneopts = "UT"
   revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
   version = "v0.8.0"
+
+[[projects]]
+  digest = "1:efafa5160b1666d27e6e1ad4cd3fba27ce73aaaa1e99c3d02e14e55690a8878d"
+  name = "github.com/rogpeppe/go-internal"
+  packages = [
+    "modfile",
+    "module",
+    "semver",
+  ]
+  pruneopts = "UT"
+  revision = "d87f08a7d80821c797ffc8eb8f4e01675f378736"
+  version = "v1.0.0"
 
 [solve-meta]
   analyzer-name = "dep"

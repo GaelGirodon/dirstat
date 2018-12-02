@@ -23,10 +23,15 @@ body {
 
   div.container {
     border-top: solid 1px #e5e5e5;
-    padding: 12px 4px;
-  }
-  .icon {
-    font-size: x-large;
+    padding: 16px 4px;
+
+    a img {
+      margin-top: -6px;
+      transition: opacity 0.15s ease;
+    }
+    a:hover img {
+      opacity: 0.75;
+    }
   }
 }
 

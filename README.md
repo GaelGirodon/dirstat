@@ -20,7 +20,7 @@ where your disk space has gone to help you to clean it up.
 ### CLI usage
 
 ```shell
-dirstat --port 8000
+dirstat [--port 8000]
 ```
 
 ## Development
@@ -33,7 +33,7 @@ Install global dependencies:
 - NPM >= 5
 - Go >= 1.11
 - [Dep](https://github.com/golang/dep) >= 0.5.0
-- [Packr](https://github.com/gobuffalo/packr) >= 1.15
+- [Packr](https://github.com/gobuffalo/packr) >= 1.21.5 (< 2.0.0)
 - PowerShell
 
 Then, install project dependencies:
@@ -57,7 +57,9 @@ npm run package
 ### Release
 
 1. Start the release: `git flow release start X.Y.Z`
-2. Update the version number in [`package.json`](package.json)
+2. Update the version number in:
+   - [`package.json`](package.json) (+ `npm run ensure`)
+   - [`index.html`](web/index.html)
 3. Commit changes: `git commit -m "Bump the version number"`
 4. Finish the release: `git flow release finish X.Y.Z`
 5. Push to the repository: `git push --all origin && git push --tags`
