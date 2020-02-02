@@ -2,9 +2,6 @@
 # .gitignore
 #
 
-# dep
-vendor/
-
 # Node.js
 node_modules/
 
