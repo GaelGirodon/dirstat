@@ -11,7 +11,7 @@ where your disk space has gone to help you to clean it up.
 
 ### Quick start
 
-1. Download the [latest release](https://github.com/GaelGirodon/dir-stat/releases)
+1. Download the [latest release](https://github.com/GaelGirodon/dirstat/releases)
 2. Start **DirStat**
 3. Set the path of the directory to scan
 4. Click on the <kbd>**Scan**</kbd> button (or press <kbd>Enter</kbd>)
@@ -29,11 +29,10 @@ dirstat [--port 8000]
 
 Install global dependencies:
 
-- Node.js >= 8
-- NPM >= 5
-- Go >= 1.11
-- [Dep](https://github.com/golang/dep) >= 0.5.0
-- [Packr](https://github.com/gobuffalo/packr) >= 1.21.5 (< 2.0.0)
+- Node.js >= 12
+- NPM >= 6
+- Go >= 1.13
+- [Packr](https://github.com/gobuffalo/packr) >= 1.30.0 (< 2.0.0)
 - PowerShell
 
 Then, install project dependencies:
@@ -72,4 +71,4 @@ npm run package
 
 ## License
 
-DirStat is licensed under the GNU General Public License.
+**DirStat** is licensed under the GNU General Public License.
