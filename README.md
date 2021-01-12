@@ -29,10 +29,10 @@ dirstat [--port 8000]
 
 Install global dependencies:
 
-- Node.js >= 12
+- Node.js >= 14
 - NPM >= 6
-- Go >= 1.13
-- [Packr](https://github.com/gobuffalo/packr) >= 1.30.0 (< 2.0.0)
+- Go >= 1.15
+- Packr >= 2
 - PowerShell
 
 Then, install project dependencies:

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/gobuffalo/packr"
+	"github.com/gobuffalo/packr/v2"
 	"github.com/phayes/freeport"
 	"io/ioutil"
 	"log"
@@ -35,7 +35,7 @@ func main() {
 	url := fmt.Sprintf("http://%s", addr)
 
 	// Static file server
-	box := packr.NewBox("./web")
+	box := packr.New("web", "./web")
 	fs := http.FileServer(box)
 	http.Handle("/", fs)
 
