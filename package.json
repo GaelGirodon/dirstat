@@ -1,12 +1,11 @@
 {
   "name": "dirstat",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Simple directory statistics",
   "scripts": {
     "build:assets": "gulp",
     "build:dev": "npm run build:assets && go build dirstat.go",
     "build": "npm run build:assets && packr2 clean && packr2 && go build -ldflags=\"-s -w\" -o dirstat.exe .",
-    "ensure": "npm install",
     "start": "npm run build:dev && dirstat",
     "package": "powershell ./scripts/package.ps1"
   },
@@ -21,8 +20,8 @@
   },
   "homepage": "https://github.com/GaelGirodon/dirstat#readme",
   "dependencies": {
-    "bootstrap": "^4.5.3",
-    "d3plus": "^2.0.0-alpha.17",
+    "bootstrap": "^4.6.0",
+    "d3plus": "^2.0.0",
     "vue": "^2.6.12",
     "vue-resource": "^1.5.1"
   },

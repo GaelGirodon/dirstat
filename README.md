@@ -38,7 +38,7 @@ Install global dependencies:
 Then, install project dependencies:
 
 ```shell
-npm run ensure
+npm install
 ```
 
 ### Build
@@ -57,7 +57,7 @@ npm run package
 
 1. Start the release: `git flow release start X.Y.Z`
 2. Update the version number in:
-   - [`package.json`](package.json) (+ `npm run ensure`)
+   - [`package.json`](package.json) (+ `npm install`)
    - [`index.html`](web/index.html)
 3. Commit changes: `git commit -m "Bump the version number"`
 4. Finish the release: `git flow release finish X.Y.Z`
