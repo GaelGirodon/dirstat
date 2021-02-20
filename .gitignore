@@ -15,3 +15,7 @@ web/*.min.*
 # IDE
 *.iml
 .idea/
+
+# Packr generated files
+packrd/
+*-packr.go

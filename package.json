@@ -1,12 +1,11 @@
 {
   "name": "dirstat",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Simple directory statistics",
   "scripts": {
     "build:assets": "gulp",
     "build:dev": "npm run build:assets && go build dirstat.go",
-    "build": "npm run build:assets && packr build -i -o dirstat.exe .",
-    "ensure": "npm install",
+    "build": "npm run build:assets && packr2 clean && packr2 && go build -ldflags=\"-s -w\" -o dirstat.exe .",
     "start": "npm run build:dev && dirstat",
     "package": "powershell ./scripts/package.ps1"
   },
@@ -21,17 +20,17 @@
   },
   "homepage": "https://github.com/GaelGirodon/dirstat#readme",
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "d3plus": "^2.0.0-alpha.17",
-    "vue": "^2.6.11",
+    "bootstrap": "^4.6.0",
+    "d3plus": "^2.0.0",
+    "vue": "^2.6.12",
     "vue-resource": "^1.5.1"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.2.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
-    "gulp-sass": "^4.0.2",
+    "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.2",
-    "node-sass": "^4.13.1"
+    "node-sass": "^5.0.0"
   }
 }

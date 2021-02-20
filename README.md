@@ -29,16 +29,16 @@ dirstat [--port 8000]
 
 Install global dependencies:
 
-- Node.js >= 12
+- Node.js >= 14
 - NPM >= 6
-- Go >= 1.13
-- [Packr](https://github.com/gobuffalo/packr) >= 1.30.0 (< 2.0.0)
+- Go >= 1.15
+- Packr >= 2
 - PowerShell
 
 Then, install project dependencies:
 
 ```shell
-npm run ensure
+npm install
 ```
 
 ### Build
@@ -57,7 +57,7 @@ npm run package
 
 1. Start the release: `git flow release start X.Y.Z`
 2. Update the version number in:
-   - [`package.json`](package.json) (+ `npm run ensure`)
+   - [`package.json`](package.json) (+ `npm install`)
    - [`index.html`](web/index.html)
 3. Commit changes: `git commit -m "Bump the version number"`
 4. Finish the release: `git flow release finish X.Y.Z`
