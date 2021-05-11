@@ -31,7 +31,7 @@ Install global dependencies:
 
 - Node.js >= 14
 - NPM >= 6
-- Go >= 1.15
+- Go >= 1.16
 - Packr >= 2
 - PowerShell
 
