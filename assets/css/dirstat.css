@@ -1,0 +1,43 @@
+/* Vue.js */
+[v-cloak] {
+  display: none;
+}
+
+/* Page structure */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 80px;
+  background: #f5f5f5;
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer div.container {
+  border-top: solid 1px #e5e5e5;
+  padding: 16px 4px;
+}
+
+.footer div.container a img {
+  margin-top: -6px;
+  transition: opacity 0.15s ease;
+}
+
+.footer div.container a:hover img {
+  opacity: 0.75;
+}
+
+/* Breadcrumb customization */
+.breadcrumb {
+  background: #ffffff;
+  border: solid 1px #ced4da;
+  padding-top: 0.4rem !important;
+  padding-bottom: 0.4rem !important;
+}

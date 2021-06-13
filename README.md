@@ -35,11 +35,16 @@ Install global dependencies:
 - Packr >= 2
 - PowerShell
 
-Then, install project dependencies:
+Install NPM packages:
 
 ```shell
 npm install
 ```
+
+Install D3plus:
+
+- Download and extract the latest 1.x release of `d3plus-hierarchy`
+- Move `d3plus-hierarchy.full.min.js` to [`assets/js/lib/`](./assets/js/lib/)
 
 ### Build
 

@@ -50,30 +50,36 @@ var app = new Vue({
         scan: function () {
             this.error = null;
             this.processing = true;
-            this.$http.get('stat?path=' + this.dir + '&files=' + this.includeFiles).then(function (data) {
-                var entry = data.body;
-                this.path = [entry];
-                document.getElementById('treemap-container').innerHTML = '';
-                this.graph = new d3plus.Treemap()
-                    .select('#treemap-container')
-                    .detectResize(true)
-                    .detectResizeDelay(250)
-                    .height(640)
-                    .data(this.entries)
-                    .groupBy('name').sum(this.mode)
-                    .tooltipConfig({
-                        title: function (d) {
-                            return d.name
-                        }, body: this.mapStats
-                    })
-                    .on('click', this.openEntry)
-                    .render();
-                this.processing = false;
-            }).catch(function (err) {
-                this.processing = false;
-                this.error = 'Unable to scan the given directory'
-                    + (err.body.message ? ': ' + err.body.message : '') + '.';
-            });
+            var that = this;
+            axios.get('stat?path=' + this.dir + '&files=' + this.includeFiles)
+                .then(function (response) {
+                    var entry = response.data;
+                    that.path = [entry];
+                    document.getElementById('treemap-container').innerHTML = '';
+                    that.graph = new d3plus.Treemap()
+                        .select('#treemap-container')
+                        .detectResize(true)
+                        .detectResizeDelay(250)
+                        .height(640)
+                        .data(that.entries)
+                        .groupBy('name').sum(that.mode)
+                        .legend(false)
+                        .tooltipConfig({
+                            title: function (d) {
+                                return d.name
+                            },
+                            body: that.mapStats
+                        })
+                        .on('click', that.openEntry)
+                        .render();
+                    that.processing = false;
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    that.processing = false;
+                    that.error = 'Unable to scan the given directory'
+                        + (error.response && error.response.data.message ? ': ' + error.response.data.message : '') + '.';
+                });
         },
         // Map entry stats to a string
         mapStats: function (d) {

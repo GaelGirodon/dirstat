@@ -19,18 +19,14 @@
     "url": "https://github.com/GaelGirodon/dirstat/issues"
   },
   "homepage": "https://github.com/GaelGirodon/dirstat#readme",
-  "dependencies": {
-    "bootstrap": "^4.6.0",
-    "d3plus": "^2.0.0",
-    "vue": "^2.6.12",
-    "vue-resource": "^1.5.2"
-  },
   "devDependencies": {
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
-    "gulp-sass": "^4.1.0",
+    "gulp-if": "^3.0.0",
     "gulp-uglify": "^3.0.2",
-    "node-sass": "^6.0.0"
+    "vue": "^2.6.14"
   }
 }

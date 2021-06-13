@@ -10,6 +10,7 @@ node_modules/
 release/
 
 # Minified scripts & styles
+assets/js/lib
 web/*.min.*
 
 # IDE
