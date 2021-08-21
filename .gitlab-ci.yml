@@ -1,0 +1,56 @@
+#
+# .gitlab-ci.yml
+#
+
+stages:
+  - assets
+  - build
+  - package
+
+workflow:
+  rules: [ if: $CI_COMMIT_BRANCH ]
+
+build-template:
+  stage: assets
+  image: node:lts
+  script:
+    - cd report
+    - npm install
+    - npm run build
+  artifacts:
+    paths: [ "internal/report/template.html" ]
+    expire_in: 1 week
+
+build:
+  stage: build
+  image: golang:1.17
+  script:
+    - GOARCH=amd64 GOOS=linux   go build -ldflags="-s -w" -o "dirstat"     "cmd/dirstat.go"
+    - GOARCH=amd64 GOOS=windows go build -ldflags="-s -w" -o "dirstat.exe" "cmd/dirstat.go"
+  artifacts:
+    paths: [ "dirstat", "dirstat.exe" ]
+    expire_in: 1 week
+
+package:linux:
+  stage: package
+  image: buildpack-deps
+  script:
+    - archive=dirstat_linux_amd64.tar.gz
+    - tar zcvf "${archive}" dirstat
+    - sha256sum "${archive}" | cut -d' ' -f 1 > "${archive}.sha256"
+  artifacts:
+    paths: [ "dirstat_linux_amd64.tar.gz*" ]
+    expire_in: 1 week
+
+package:windows:
+  stage: package
+  image: mcr.microsoft.com/powershell
+  script:
+    - pwsh -NoLogo -NoProfile -Command "
+      \$archive = 'dirstat_windows_amd64.zip';
+      Compress-Archive 'dirstat.exe' -DestinationPath \"\$archive\" -CompressionLevel 'Optimal';
+      \$hash = (Get-FileHash -Algorithm 'SHA256' \"\$archive\").Hash.ToLower();
+      Set-Content -Path \"\$archive.sha256\" -Value \"\$hash\`n\" -Encoding 'ascii' -NoNewline"
+  artifacts:
+    paths: [ "dirstat_windows_amd64.zip*" ]
+    expire_in: 1 week

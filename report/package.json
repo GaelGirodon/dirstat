@@ -1,0 +1,19 @@
+{
+  "name": "dirstat-report",
+  "version": "0.1.0",
+  "description": "DirStat HTML report template",
+  "author": "Gael Girodon <contact@gaelgirodon.fr>",
+  "license": "GPL-3.0-or-later",
+  "private": true,
+  "scripts": {
+    "build": "node build.js",
+    "build:dev": "node build.js --dev --watch"
+  },
+  "devDependencies": {
+    "bulma": "^0.9.3",
+    "chokidar": "^3.5.2",
+    "htm": "^3.1.0",
+    "sass": "^1.38.0",
+    "uglify-js": "^3.14.1"
+  }
+}

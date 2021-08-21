@@ -1,21 +1,24 @@
-#
 # .gitignore
-#
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
 
 # Node.js
 node_modules/
-
-# Binaries
-*.exe
-release/
-
-# Minified scripts & styles
-web/*.min.*
+*.log
 
 # IDE
-*.iml
 .idea/
+*.iml
 
-# Packr generated files
-packrd/
-*-packr.go
+# Project
+internal/report/template*.html
+data.js
+dirstat-report.*
+tmp/

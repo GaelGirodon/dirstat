@@ -1,73 +1,58 @@
 # DirStat
 
-Simple directory statistics.
+[![release](https://img.shields.io/github/v/release/GaelGirodon/dirstat?style=flat-square)](https://github.com/GaelGirodon/dirstat/releases)
+[![license](https://img.shields.io/github/license/GaelGirodon/dirstat?color=informational&style=flat-square)](https://github.com/GaelGirodon/dirstat/blob/master/LICENSE)
+[![build](https://img.shields.io/gitlab/pipeline/GaelGirodon/dirstat/develop?style=flat-square)](https://gitlab.com/GaelGirodon/dirstat/-/pipelines/latest)
 
-## Overview
+Simple directory statistics
 
-**DirStat** is a simple graphical web application to show
-where your disk space has gone to help you to clean it up.
+## About
 
-## Guide
+**DirStat** is a lightweight command-line tool (< 1 MB). It allows to scan a directory that needs to
+be cleaned up, collect statistics about it and make them easily browsable by generating an
+[interactive graphical HTML report](#report).
 
-### Quick start
+Statistics about biggest files and directories (both in size and files count, recursively or not),
+most used extensions, most frequent modification years and maximum level of nesting help to know
+where the disk space has gone and make it easier to clean the directory.
 
-1. Download the [latest release](https://github.com/GaelGirodon/dirstat/releases)
-2. Start **DirStat**
-3. Set the path of the directory to scan
-4. Click on the <kbd>**Scan**</kbd> button (or press <kbd>Enter</kbd>)
-5. Navigate in the treemap to show where your disk space has gone
+> :warning: Scanning directories with many files can take a long time and leads to a large report.
 
-### CLI usage
+## Usage
 
-```shell
-dirstat [--port 8000]
-```
-
-## Development
-
-### Setup
-
-Install global dependencies:
-
-- Node.js >= 14
-- NPM >= 6
-- Go >= 1.16
-- Packr >= 2
-- PowerShell
-
-Then, install project dependencies:
+Download and extract the [latest release](https://github.com/GaelGirodon/dirstat/releases), open a
+terminal and scan a directory using the `dirstat` binary:
 
 ```shell
-npm install
+dirstat [flags] <path>
 ```
 
-### Build
+### Arguments
+
+| Argument      | Description                                                                   |
+| ------------- | ----------------------------------------------------------------------------- |
+| `<path>`      | Path to the directory to scan                                                 |
+| `-out <path>` | Path to the directory to write reports to (defaults to the current directory) |
+| `-v`          | Print the version number and exit                                             |
+| `-h`          | Print the help message and exit                                               |
+
+### Example
 
 ```shell
-npm run build
+$ dirstat ./my/dir/
+Scanning ./my/dir/
+42 files scanned
+Reports written to dirstat-report.*
 ```
 
-### Package
+### Report
 
-```shell
-npm run package
-```
+**DirStat** generates two report files:
 
-### Release
+- `dirstat-report.html`: the interactive graphical HTML report
+- `dirstat-report.json`: raw directory statistics
 
-1. Start the release: `git flow release start X.Y.Z`
-2. Update the version number in:
-   - [`package.json`](package.json) (+ `npm install`)
-   - [`index.html`](web/index.html)
-3. Commit changes: `git commit -m "Bump the version number"`
-4. Finish the release: `git flow release finish X.Y.Z`
-5. Push to the repository: `git push --all origin && git push --tags`
-
-## Tasks
-
-- [ ] Auto-complete the directory path
-- [ ] Improve the treemap display
-- [ ] Harmonize folder naming (directory, folder...)
+![HTML report screenshot](https://user-images.githubusercontent.com/10748287/130336551-a8629e4d-c50a-4c41-a13d-7230d6400e4a.png)
 
 ## License
 

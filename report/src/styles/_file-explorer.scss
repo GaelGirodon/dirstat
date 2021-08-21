@@ -1,0 +1,104 @@
+/*
+ * _file-explorer.scss
+ * File explorer component style
+ */
+
+.file-explorer {
+
+  .fe-title {
+    position: relative;
+    margin-bottom: 8px;
+    font-weight: 600;
+    padding-right: 32px;
+
+    .copy {
+      position: absolute;
+      right: 0;
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+
+      &:active {
+        color: rgba(0, 0, 0, 0.65);
+      }
+
+      input {
+        background: transparent;
+        border: none;
+        outline: none;
+        width: 0;
+        padding: 0;
+        opacity: 0;
+      }
+    }
+  }
+
+  .has-ellipsis {
+    display: inline-block;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+
+  ul {
+    margin: 0;
+
+    li {
+      position: relative;
+      margin: 0;
+      padding: 4px;
+      border-radius: 4px;
+      list-style: none;
+      cursor: default;
+      user-select: none;
+
+      &:hover {
+        background-color: #e5e5e5;
+      }
+
+      &.dir {
+        cursor: pointer;
+      }
+
+      &::before {
+        content: '\1F4C1';
+        list-style: none;
+        margin: 0 6px;
+      }
+
+      &.file::before {
+        content: '\1F4C4';
+      }
+
+      &.up::before {
+        content: '\2B05\FE0F';
+      }
+
+      .name {
+        position: relative;
+        max-width: 75%;
+        z-index: 1;
+      }
+
+      .bar {
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        right: 4px;
+        background-color: #b3e5fc;
+        border-radius: 2px;
+        transition: width 0.25s ease;
+      }
+
+      .legend {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        font-size: 0.75rem;
+      }
+    }
+  }
+}

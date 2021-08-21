@@ -1,0 +1,32 @@
+/*
+ * main.scss
+ */
+
+@import "../../node_modules/bulma/sass/base/_all";
+@import "../../node_modules/bulma/sass/utilities/_all";
+@import "../../node_modules/bulma/sass/elements/container";
+@import "../../node_modules/bulma/sass/elements/title";
+@import "../../node_modules/bulma/sass/form/shared";
+@import "../../node_modules/bulma/sass/form/checkbox-radio";
+@import "../../node_modules/bulma/sass/form/select";
+@import "../../node_modules/bulma/sass/grid/columns";
+@import "../../node_modules/bulma/sass/helpers/spacing";
+@import "../../node_modules/bulma/sass/helpers/visibility";
+@import "../../node_modules/bulma/sass/helpers/flexbox";
+@import "../../node_modules/bulma/sass/layout/section";
+
+// Global
+html, body {
+  background-color: #f5f5f5;
+}
+
+// Subtitle margin customization
+.title:not(.is-spaced) + .subtitle {
+  margin-top: -.75rem;
+}
+
+@import "box";
+@import "tooltip";
+@import "project-link";
+@import "file-explorer";
+@import "chart";
