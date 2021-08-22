@@ -20,17 +20,18 @@ const reportName = "dirstat-report"
 //go:embed template.html
 var reportTemplate string
 
-// WriteReports generates reports to the given dest directory.
-func WriteReports(dest string, files []*scan.FileStat) error {
+// WriteReports generates reports to the given dest directory
+// and returns the path to the HTML report file.
+func WriteReports(dest string, files []*scan.FileStat) (string, error) {
 	// Marshal statistics to JSON
 	filesJson, err := json.Marshal(files)
 	if err != nil {
-		return errors.New("unable to marshal files list")
+		return "", errors.New("unable to marshal files list")
 	}
 	// Generate the JSON report
 	jsonReportPath := filepath.Join(dest, reportName+".json")
 	if err := os.WriteFile(jsonReportPath, filesJson, 0666); err != nil {
-		return errors.New("unable to write the JSON report file")
+		return "", errors.New("unable to write the JSON report file")
 	}
 	// Generate the HTML report
 	htmlReportPath := filepath.Join(dest, reportName+".html")
@@ -41,8 +42,8 @@ func WriteReports(dest string, files []*scan.FileStat) error {
 	htmlReport = strings.Replace(htmlReport, "<!-- {path} -->", files[0].Path, 1)
 	htmlReport = strings.Replace(htmlReport, "<!-- {data} -->", dataScript, 1)
 	if err := os.WriteFile(htmlReportPath, []byte(htmlReport), 0666); err != nil {
-		return errors.New("unable to write the HTML report file")
+		return "", errors.New("unable to write the HTML report file")
 	}
-	log.Printf("Reports written to %s", filepath.Join(dest, reportName+".*"))
-	return nil
+	log.Printf("Reports written to %s\n", filepath.Join(dest, reportName+".*"))
+	return htmlReportPath, nil
 }

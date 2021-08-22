@@ -55,14 +55,13 @@ function build() {
     .map(s => fs.readFileSync(path.join(__dirname, s), "utf8"))
     .map((s, i) => i >= 1 ? minify(s, minifyOpts).code
       .replace(/(>)\n +|\n +(<)/g, "$1$2")
-      .replace(/(["}])\n +([\w$])/g, "$1 $2") : s)
+      .replace(/(["}])\n +([\w$(])/g, "$1 $2") : s)
     .reduce((acc, val) => acc + val);
   const html = fs.readFileSync(path.join(__dirname, src.html), "utf8")
     .replace("<!-- {styles} -->", `<style>${style}</style>`)
     .replace("<!-- {scripts} -->", `<script>${script}</script>`);
-  fs.mkdirSync(path.join(__dirname, "dist"), {recursive: true});
   fs.writeFileSync(path.join(__dirname, output), html);
-  console.log("Done");
+  console.log(`Done -> ${path.join(__dirname, output)}`);
 }
 
 // Initial build

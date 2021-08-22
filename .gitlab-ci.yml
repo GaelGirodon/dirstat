@@ -3,15 +3,15 @@
 #
 
 stages:
-  - assets
+  - report
   - build
   - package
 
 workflow:
   rules: [ if: $CI_COMMIT_BRANCH ]
 
-build-template:
-  stage: assets
+build:report:
+  stage: report
   image: node:lts
   script:
     - cd report

@@ -1,4 +1,4 @@
-package util
+package cmd
 
 import (
 	"errors"
@@ -6,8 +6,8 @@ import (
 	"os"
 )
 
-// ValidateDirPath checks that path is a valid path to a directory.
-func ValidateDirPath(path string) error {
+// validateDirPath checks that path is a valid path to a directory.
+func validateDirPath(path string) error {
 	if len(path) == 0 {
 		return errors.New("directory path is required")
 	} else if stat, err := os.Stat(path); err != nil {

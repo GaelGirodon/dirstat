@@ -102,7 +102,8 @@ class Chart extends Component {
               <div class="chart-item has-tooltip" key="${item.name}"
                    style="width: ${item.value * 100 / total}%; background: ${colors[i % colors.length]}">
                 <div class="tooltip">
-                  <strong>${item.name}</strong>: ${this.label(item.value)}
+                  <strong>${item.name}</strong><br/>
+                  ${this.label(item.value)} (${Math.round(item.value * 100 / total)}%)
                 </div>
               </div>`)}
           </div>
@@ -112,7 +113,10 @@ class Chart extends Component {
                 <span class="chart-legend-item-color"
                       style="background: ${colors[i % colors.length]}"></span>
                 <span class="chart-legend-item-name">${item.name}</span>
-                <div class="tooltip">${this.label(item.value)}</div>
+                <div class="tooltip">
+                  ${this.label(item.value)}
+                    (${Math.round(item.value * 100 / total)}%)
+                </div>
               </div>`)}
           </div>
         </div>

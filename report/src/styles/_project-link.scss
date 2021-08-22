@@ -4,25 +4,25 @@
  */
 
 .project-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   position: relative;
   margin-left: 8px;
-  padding: 3px 8px 3px 8px;
+  padding: 3px 8px 3px 7px;
+  height: 26px;
   background-color: #90a4ae;
   border-radius: 32px;
   font-size: 1rem;
-  vertical-align: middle;
   color: white !important;
   transition: background-color 0.2s ease;
 
   // GitHub icon
   .icon {
     display: inline-block;
-    position: relative;
-    top: 2px;
-    left: -1px;
     overflow: hidden;
+    margin-right: 1px;
     width: 0;
+    height: 16px;
     opacity: 0;
     transition: width 0.2s ease, opacity 0.2s ease;
 
@@ -36,14 +36,8 @@
     background-color: #546e7a;
 
     .icon {
-      width: 22px;
+      width: 21px;
       opacity: 1;
     }
-  }
-
-  // Version number
-  .version {
-    position: relative;
-    top: -3px;
   }
 }

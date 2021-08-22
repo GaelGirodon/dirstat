@@ -4,7 +4,8 @@
 [![license](https://img.shields.io/github/license/GaelGirodon/dirstat?color=informational&style=flat-square)](https://github.com/GaelGirodon/dirstat/blob/master/LICENSE)
 [![build](https://img.shields.io/gitlab/pipeline/GaelGirodon/dirstat/develop?style=flat-square)](https://gitlab.com/GaelGirodon/dirstat/-/pipelines/latest)
 
-Simple directory statistics
+A simple tool that helps to clean up directories by scanning them and generating interactive
+statistics reports.
 
 ## About
 
@@ -27,22 +28,45 @@ terminal and scan a directory using the `dirstat` binary:
 dirstat [flags] <path>
 ```
 
+Invoke `dirstat` without any argument to run the interactive mode.
+
 ### Arguments
 
-| Argument      | Description                                                                   |
-| ------------- | ----------------------------------------------------------------------------- |
-| `<path>`      | Path to the directory to scan                                                 |
-| `-out <path>` | Path to the directory to write reports to (defaults to the current directory) |
-| `-v`          | Print the version number and exit                                             |
-| `-h`          | Print the help message and exit                                               |
+| Argument    | Description                               | Default |
+| ----------- | ----------------------------------------- | ------- |
+| `<path>`    | Path to the directory to scan             |         |
+| `-o <path>` | Path to the directory to write reports to | `.`     |
+| `-v`        | Print the version number and exit         |         |
+| `-h`        | Print the help message and exit           |         |
 
 ### Example
 
+#### CLI
+
 ```shell
-$ dirstat ./my/dir/
+$ dirstat ./my/dir/ -o ./report/
+Scanning ./my/dir/
+42 files scanned
+Reports written to report/dirstat-report.*
+```
+
+#### Interactive mode
+
+```shell
+$ dirstat
+   ___  _     ______       __
+  / _ \(_)___/ __/ /____ _/ /_
+ / // / / __/\ \/ __/ _ `/ __/
+/____/_/_/ /___/\__/\_,_/\__/
+
+Type or paste the path to the directory to scan and press the Enter key:
+> ./my/dir/
+
 Scanning ./my/dir/
 42 files scanned
 Reports written to dirstat-report.*
+
+Press the Enter key to open the report and exit...
 ```
 
 ### Report
@@ -52,7 +76,7 @@ Reports written to dirstat-report.*
 - `dirstat-report.html`: the interactive graphical HTML report
 - `dirstat-report.json`: raw directory statistics
 
-![HTML report screenshot](https://user-images.githubusercontent.com/10748287/130336551-a8629e4d-c50a-4c41-a13d-7230d6400e4a.png)
+![HTML report screenshot](https://user-images.githubusercontent.com/10748287/130360466-3f090803-e9b3-49f4-9658-8d86b4050ec6.png)
 
 ## License
 
