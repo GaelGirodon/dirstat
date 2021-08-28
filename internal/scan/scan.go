@@ -21,7 +21,7 @@ func Scan(dir string) (files []*FileStat, err error) {
 	err = filepath.Walk(dirPath, func(path string, info fs.FileInfo, err error) error {
 		// Skip unreadable file or directory
 		if err != nil {
-			log.Printf("skipping %q due to error: %v\n", path, err)
+			log.Printf("Skipping %q due to error: %v\n", path, err)
 			return filepath.SkipDir
 		}
 		// Update the stack
@@ -49,7 +49,7 @@ func Scan(dir string) (files []*FileStat, err error) {
 			files = append(files, stat)                      // Append the file to the files list
 			files[stack[len(stack)-1]].combineStat(*stat, i) // Update current directory statistics
 		} else {
-			log.Printf("skipping %q (not a directory nor a regular file)\n", path)
+			log.Printf("Skipping %q (not a directory nor a regular file)\n", path)
 			return filepath.SkipDir
 		}
 		log.Printf("%d files scanned\r", len(files))

@@ -132,7 +132,7 @@ class FileExplorer extends Component {
           Explorer
         </div>
         <div class="fe-title">
-          <span class="has-ellipsis tooltip-left" data-tooltip="${absPath}">
+          <span class="has-ellipsis tooltip-start" data-tooltip="${absPath}">
             ${title}
           </span>
           <span class="copy" data-tooltip="Copy absolute path to the clipboard"

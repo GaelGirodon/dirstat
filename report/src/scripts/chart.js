@@ -8,25 +8,23 @@
  * @type {string[]}
  */
 const COLORS = [
-  "rgb(244, 67, 54)",
-  "rgb(233, 30, 99)",
-  "rgb(156, 39, 176)",
-  "rgb(103, 58, 183)",
-  "rgb(63, 81, 181)",
-  "rgb(33, 150, 243)",
-  "rgb(3, 169, 244)",
-  "rgb(0, 188, 212)",
-  "rgb(0, 150, 136)",
-  "rgb(76, 175, 80)",
-  "rgb(139, 195, 74)",
-  "rgb(205, 220, 57)",
-  // "rgb(255, 235, 59)",
-  "rgb(255, 193, 7)",
-  "rgb(255, 152, 0)",
-  "rgb(255, 87, 34)",
-  "rgb(121, 85, 72)",
-  "rgb(96, 125, 139)"
-];
+  "#F44336", // Red
+  "#E91E63", // Pink
+  "#9C27B0", // Purple
+  "#673AB7", // Deep Purple
+  "#303F9F", // Indigo
+  "#1976D2", // Blue
+  "#03A9F4", // Light Blue
+  "#26C6DA", // Cyan
+  "#009688", // Teal
+  "#4CAF50", // Green
+  "#8BC34A", // Light Green
+  "#CDDC39", // Lime
+  "#FB8C00", // Orange
+  "#F4511E", // Deep Orange
+  "#795548", // Brown
+  "#607D8B", // Blue Grey
+].shuffle();
 
 /**
  * Color for the "other" category
@@ -59,7 +57,7 @@ class Chart extends Component {
     const dir = files[this.state.dirIndex]; // Current directory
     const type = this.state.recursive ? "r" : "d";
     const allItems = this.data(dir, type, this.state.mode); // Full dataset
-    if (!allItems.length || allItems.every(i => i.value === 0)) {
+    if (!allItems.length || allItems.every(i => i.value <= 0)) {
       return []; // Nothing to display in the chart
     }
     allItems.sort((a, b) => b.value - a.value); // Sort descending
@@ -87,20 +85,28 @@ class Chart extends Component {
     if (data.length === 0) {
       return html`
         <div class="box">
-          <div class="box-title tooltip-left" data-tooltip="${this.description}">${this.name}</div>
+          <div class="box-title tooltip-top tooltip-start" data-tooltip="${this.description}">
+            ${this.name}
+          </div>
           <div class="no-data">No data available</div>
         </div>`;
     }
     const total = data.reduce((total, item) => total + item.value, 0);
-    const colors = shuffle(COLORS.slice()).slice(0, this.max - 1).concat([DEFAULT_COLOR]);
+    const used = [];
+    const colors = data.map(item => COLORS[used.pushGet(strToColor(item.name, used))[0]])
+      .slice(0, this.max - 1).concat([DEFAULT_COLOR]);
     return html`
       <div class="box">
-        <div class="box-title tooltip-left" data-tooltip="${this.description}">${this.name}</div>
+        <div class="box-title tooltip-top tooltip-start" data-tooltip="${this.description}">
+          ${this.name}
+        </div>
         <div class="chart">
           <div class="chart-content">
             ${data.map((item, i) => html`
               <div class="chart-item has-tooltip" key="${item.name}"
                    style="width: ${item.value * 100 / total}%; background: ${colors[i % colors.length]}">
+                ${(item.value * 100 / total) >= 10
+                  ? html`<span class="chart-item-name">${item.name}</span>` : ""}
                 <div class="tooltip">
                   <strong>${item.name}</strong><br/>
                   ${this.label(item.value)} (${Math.round(item.value * 100 / total)}%)
@@ -124,4 +130,19 @@ class Chart extends Component {
     `;
   }
 
+}
+
+/**
+ * Map the string to a color index in COLORS.
+ * @param {string} str The string to map to a color index
+ * @param {number[]} exclusions Color indexes to exclude
+ * @return {number} The index of the color associated to the string
+ */
+function strToColor(str, exclusions) {
+  let sum = 0;
+  for (let i = 0; i < str.length; i++) {
+    sum += str.charCodeAt(i);
+  }
+  for (let i = 0; exclusions.includes(sum % COLORS.length) && i <= exclusions.length; i++, sum++) ;
+  return sum % COLORS.length;
 }

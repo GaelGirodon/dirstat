@@ -17,18 +17,34 @@ Statistics about biggest files and directories (both in size and files count, re
 most used extensions, most frequent modification years and maximum level of nesting help to know
 where the disk space has gone and make it easier to clean the directory.
 
-> :warning: Scanning directories with many files can take a long time and leads to a large report.
+## Install
+
+Download and extract the [latest release](https://github.com/GaelGirodon/dirstat/releases):
+
+```powershell
+# Windows (PowerShell)
+$DOWNLOAD_URL = "https://github.com/GaelGirodon/dirstat/releases/latest/download"
+Invoke-WebRequest -OutFile "dirstat.zip" "$DOWNLOAD_URL/dirstat_windows_amd64.zip"
+Expand-Archive "dirstat.zip" -DestinationPath ./
+```
+
+```shell
+# Linux (Bash)
+DOWNLOAD_URL="https://github.com/GaelGirodon/dirstat/releases/latest/download"
+curl -sL "$DOWNLOAD_URL/dirstat_linux_amd64.tar.gz" | tar xvz
+```
 
 ## Usage
 
-Download and extract the [latest release](https://github.com/GaelGirodon/dirstat/releases), open a
-terminal and scan a directory using the `dirstat` binary:
+Open a terminal and scan a directory using the `dirstat` binary:
 
 ```shell
 dirstat [flags] <path>
 ```
 
 Invoke `dirstat` without any argument to run the interactive mode.
+
+> :warning: Scanning directories with many files can take a long time and leads to a large report.
 
 ### Arguments
 
@@ -76,7 +92,7 @@ Press the Enter key to open the report and exit...
 - `dirstat-report.html`: the interactive graphical HTML report
 - `dirstat-report.json`: raw directory statistics
 
-![HTML report screenshot](https://user-images.githubusercontent.com/10748287/130360466-3f090803-e9b3-49f4-9658-8d86b4050ec6.png)
+![HTML report screenshot](https://user-images.githubusercontent.com/10748287/131232594-9bba83fe-45d5-44fe-993a-d162ffd25fde.png)
 
 ## License
 

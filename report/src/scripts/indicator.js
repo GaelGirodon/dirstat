@@ -33,7 +33,7 @@ class Indicator extends Component {
   render() {
     return html`
       <div class="box">
-        <div class="box-title tooltip-left" data-tooltip="${this.description}">
+        <div class="box-title tooltip-start tooltip-top" data-tooltip="${this.description}">
           ${this.name}
         </div>
         <div class="indicator">${this.indicator()}</div>

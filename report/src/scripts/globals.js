@@ -20,15 +20,24 @@ const sharedState = new Store({recursive: true, mode: "s", dirIndex: 0});
 
 /**
  * Randomize array items position.
- * @param array Array to shuffle
- * @returns {*} The shuffled array
+ * @returns {*} The shuffled array (this)
  */
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
+Array.prototype.shuffle = function () {
+  for (let i = this.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    [this[i], this[j]] = [this[j], this[i]];
   }
-  return array;
+  return this;
+}
+
+/**
+ * Push items to the end of the array and return the added items.
+ * @param {*} items Items to add
+ * @returns {*[]} Added items
+ */
+Array.prototype.pushGet = function (...items) {
+  this.push(...items);
+  return items;
 }
 
 /**

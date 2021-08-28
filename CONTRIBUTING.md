@@ -22,11 +22,11 @@ Build and run:
 
 ## Release
 
-- Start the release: `git flow release start X.Y.Z`
 - Update the version number in:
   - [`meta.go`](./internal/meta/meta.go)
   - [`package.json`](./report/package.json) (+ `npm install`)
 - Update the [changelog](./CHANGELOG.md)
-- Commit changes: `git commit -m "Bump the version number"`
-- Finish the release: `git flow release finish X.Y.Z`
+- Commit changes: `git commit -a -m "Release X.Y.Z"`
+- Merge `develop` in `master`: `git switch master && git merge develop --ff-only`
+- Create the tag: `git tag "X.Y.Z" -a -m "X.Y.Z"`
 - Push to the repository: `git push --all origin && git push --tags`

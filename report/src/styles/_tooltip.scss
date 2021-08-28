@@ -80,15 +80,36 @@
 }
 
 /*
- * Left-aligned tooltip
+ * Left-aligned
  */
 
-.has-tooltip.tooltip-left .tooltip, [data-tooltip].tooltip-left:before {
+// Tooltip
+.has-tooltip.tooltip-start .tooltip, [data-tooltip].tooltip-start:before {
   left: 0;
   transform: initial;
 }
 
-.has-tooltip.tooltip-left .tooltip:after, [data-tooltip].tooltip-left:after {
+// Tooltip arrow
+.has-tooltip.tooltip-start .tooltip:after, [data-tooltip].tooltip-start:after {
   left: 8px;
   margin-left: initial;
+}
+
+/*
+ * Top
+ */
+
+// Tooltip
+.has-tooltip.tooltip-top .tooltip, [data-tooltip].tooltip-top:before {
+  top: initial;
+  bottom: 100%;
+  margin-bottom: 8px;
+}
+
+// Tooltip arrow
+.has-tooltip.tooltip-top .tooltip:after, [data-tooltip].tooltip-top:after {
+  top: initial;
+  bottom: 100%;
+  margin-bottom: 3px;
+  transform: rotate(180deg);
 }
