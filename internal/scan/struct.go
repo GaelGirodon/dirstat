@@ -32,7 +32,7 @@ type CountSize struct {
 	Size int64 `json:"s"`
 }
 
-// add adds count and size to the current CountSize object.
+// add count and size to the current CountSize object.
 func (cs *CountSize) add(count int, size int64) {
 	cs.Count += count
 	cs.Size += size

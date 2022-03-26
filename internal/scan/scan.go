@@ -1,7 +1,6 @@
 package scan
 
 import (
-	"errors"
 	"fmt"
 	"github.com/gaelgirodon/dirstat/internal/log"
 	"io/fs"
@@ -15,7 +14,7 @@ func Scan(dir string) (files []*FileStat, err error) {
 	var stack []int
 	dirPath, err := filepath.Abs(dir)
 	if err != nil {
-		return nil, errors.New(fmt.Sprintf("invalid root directory: %v", dir))
+		return nil, fmt.Errorf("invalid root directory: %v", dir)
 	}
 	log.Printf("Scanning %s\n", dir)
 	err = filepath.Walk(dirPath, func(path string, info fs.FileInfo, err error) error {

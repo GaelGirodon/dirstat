@@ -15,10 +15,17 @@ pushd report && npm install && popd
 
 Build and run:
 
-- Build report template ([`./report`](./report)):
-  - For development: `npm run build:dev`
-  - For production: `npm run build`
-- Run DirStat: `go run "cmd/dirstat.go" [...]`
+- Build the report template ([`report/`](./report)): `npm run build`
+  <br>_or_ for report template development:
+  - Create a [`data.js`](./report/src/scripts/data.js) file with some stub data
+    (e.g. from a real report):
+    ```js
+    var files = [/* stub data */];
+    var pathSeparator = "/";
+    ```
+  - Build [`template-dev.html`](./internal/report/template-dev.html):
+    `npm run build:dev`
+- Build and run DirStat: `go run "cmd/dirstat.go" [...]`
 
 ## Release
 

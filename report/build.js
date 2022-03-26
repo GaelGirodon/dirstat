@@ -47,10 +47,9 @@ const minifyOpts = {compress: {varify: false}, mangle: false};
  */
 function build() {
   console.log("Building...");
-  const style = sass.renderSync({
-    file: path.join(__dirname, src.styles),
-    outputStyle: "compressed"
-  }).css.toString("utf8").trim();
+  const style = sass.compile(path.join(__dirname, src.styles), {
+    style: "compressed"
+  }).css.trim();
   const script = src.scripts
     .map(s => fs.readFileSync(path.join(__dirname, s), "utf8"))
     .map((s, i) => i >= 1 ? minify(s, minifyOpts).code

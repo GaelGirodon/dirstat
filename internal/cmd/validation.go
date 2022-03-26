@@ -11,9 +11,9 @@ func validateDirPath(path string) error {
 	if len(path) == 0 {
 		return errors.New("directory path is required")
 	} else if stat, err := os.Stat(path); err != nil {
-		return errors.New(fmt.Sprintf("directory %q doesn't exist", path))
+		return fmt.Errorf("directory %q doesn't exist", path)
 	} else if !stat.IsDir() {
-		return errors.New(fmt.Sprintf("%q is not a directory", path))
+		return fmt.Errorf("%q is not a directory", path)
 	}
 	return nil
 }
