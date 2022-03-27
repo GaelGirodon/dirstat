@@ -11,9 +11,9 @@
   },
   "devDependencies": {
     "bulma": "^0.9.3",
-    "chokidar": "^3.5.2",
+    "chokidar": "^3.5.3",
     "htm": "^3.1.0",
-    "sass": "^1.38.2",
-    "uglify-js": "^3.14.1"
+    "sass": "^1.49.9",
+    "uglify-js": "^3.15.3"
   }
 }
