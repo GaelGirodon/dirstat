@@ -3,16 +3,13 @@
  * Global constants and functions
  */
 
-/**
- * Preact and HTM globals.
- */
-const {Component, html, render} = htmPreact;
+import { Store } from "./store";
 
 /**
  * Shared state instance.
  * @type {Store}
  */
-const sharedState = new Store({recursive: true, mode: "s", dirIndex: 0});
+export const sharedState = new Store({ recursive: true, mode: "s", dirIndex: 0 });
 
 /*
  * Utilities
@@ -20,23 +17,25 @@ const sharedState = new Store({recursive: true, mode: "s", dirIndex: 0});
 
 /**
  * Randomize array items position.
- * @returns {*} The shuffled array (this)
+ * @param {Array} array The array
+ * @returns {*} The shuffled array (array)
  */
-Array.prototype.shuffle = function () {
-  for (let i = this.length - 1; i > 0; i--) {
+export function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [this[i], this[j]] = [this[j], this[i]];
+    [array[i], array[j]] = [array[j], array[i]];
   }
-  return this;
+  return array;
 }
 
 /**
  * Push items to the end of the array and return the added items.
+ * @param {Array} array The array
  * @param {*} items Items to add
  * @returns {*[]} Added items
  */
-Array.prototype.pushGet = function (...items) {
-  this.push(...items);
+export function pushGet(array, ...items) {
+  array.push(...items);
   return items;
 }
 
@@ -45,7 +44,7 @@ Array.prototype.pushGet = function (...items) {
  * @param bytes File size in bytes
  * @returns {string} File size with a more human-readable unit
  */
-function humanize(bytes) {
+export function humanize(bytes) {
   const units = ["B", "kB", "MB", "GB", "TB"];
   let unit = 0;
   let value = bytes;
@@ -62,7 +61,7 @@ function humanize(bytes) {
  * @param keys Keys to pick
  * @returns {*} Filtered object
  */
-function pick(object, ...keys) {
+export function pick(object, ...keys) {
   const result = {};
   for (const key of keys) {
     if (key in object) {
@@ -71,4 +70,3 @@ function pick(object, ...keys) {
   }
   return result;
 }
-

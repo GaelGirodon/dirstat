@@ -1,5 +1,5 @@
 /*
- * _chart.scss
+ * chart.css
  * Percentage bar chart style
  */
 
@@ -76,7 +76,7 @@
   }
 }
 
-// "No data" message for empty charts
+/* "No data" message for empty charts */
 .no-data {
   position: relative;
   font-size: 2rem;

@@ -1,12 +1,15 @@
 /*
- * indicator.js
+ * indicator.jsx
  * Indicator component
  */
+
+import { Component } from "preact";
+import { humanize, sharedState } from "../globals";
 
 /**
  * A key indicator displayed in a card.
  */
-class Indicator extends Component {
+export class Indicator extends Component {
 
   constructor(props) {
     super();
@@ -31,13 +34,14 @@ class Indicator extends Component {
   }
 
   render() {
-    return html`
-      <div class="box">
-        <div class="box-title tooltip-start tooltip-top" data-tooltip="${this.description}">
-          ${this.name}
+    return (
+      <div className="box">
+        <div className="box-title tooltip-start tooltip-top" data-tooltip={this.description}>
+          {this.name}
         </div>
-        <div class="indicator">${this.indicator()}</div>
-      </div>`;
+        <div className="indicator">{this.indicator()}</div>
+      </div>
+    );
   }
 
 }

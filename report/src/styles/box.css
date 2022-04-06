@@ -1,9 +1,9 @@
 /*
- * box.js
+ * box.css
  * Box and indicator style
  */
 
-// A white card with some radius
+/* A white card with some radius */
 .box {
   padding: 16px 20px;
   background-color: #fff;
@@ -18,7 +18,7 @@
   }
 }
 
-// Indicator value
+/* Indicator value */
 .indicator {
   font-size: 1.5rem;
 }

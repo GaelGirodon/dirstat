@@ -1,0 +1,14 @@
+/*
+ * global.css
+ * Global styles
+ */
+
+/* Global */
+html, body {
+  background-color: #f5f5f5;
+}
+
+/* Subtitle margin customization */
+.title:not(.is-spaced) + .subtitle {
+  margin-top: -.75rem;
+}

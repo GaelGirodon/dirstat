@@ -1,19 +1,22 @@
 /*
- * file-explorer.js
+ * file-explorer.jsx
  * File explorer component
  */
+
+import { Component } from "preact";
+import { humanize, sharedState } from "../globals";
 
 /**
  * A file explorer allowing to browse scan results.
  */
-class FileExplorer extends Component {
+export class FileExplorer extends Component {
 
   constructor() {
     super();
-    this.state = Object.assign({stack: [0]}, sharedState.value("recursive", "mode"));
+    this.state = { stack: [0], ...sharedState.value("recursive", "mode") };
     sharedState.subscribe((s, keys) => {
       if (keys.some(k => k === "recursive" || k === "mode")) {
-        this.setState(Object.assign({}, this.state, s.value("recursive", "mode")));
+        this.setState({ ...this.state, ...s.value("recursive", "mode") });
       }
     });
   }
@@ -25,8 +28,8 @@ class FileExplorer extends Component {
   navigate(i) {
     if (i > 0 && i < files.length && files[i].t === "dir") {
       const stack = [...this.state.stack, i];
-      this.setState({...this.state, stack});
-      sharedState.update({dirIndex: i});
+      this.setState({ ...this.state, stack });
+      sharedState.update({ dirIndex: i });
     }
   }
 
@@ -36,8 +39,8 @@ class FileExplorer extends Component {
   up() {
     if (this.state.stack.length > 1) {
       const stack = this.state.stack.slice(0, this.state.stack.length - 1);
-      this.setState({...this.state, stack});
-      sharedState.update({dirIndex: stack[stack.length - 1]});
+      this.setState({ ...this.state, stack });
+      sharedState.update({ dirIndex: stack[stack.length - 1] });
     }
   }
 
@@ -76,9 +79,8 @@ class FileExplorer extends Component {
     if (file.t === "dir") {
       const key = this.state.recursive ? "r" : "d";
       return this.state.mode in file[key] ? file[key][this.state.mode] : 0;
-    } else {
-      return this.state.mode in file ? file[this.state.mode] : 0;
     }
+    return this.state.mode in file ? file[this.state.mode] : 0;
   }
 
   /**
@@ -100,10 +102,10 @@ class FileExplorer extends Component {
     let tooltip = "";
     if (file.t === "dir") {
       const type = this.state.recursive ? "r" : "d";
-      tooltip += `<strong>Size:</strong> ${humanize(file[type].s)}<br>
-        <strong>Files:</strong> ${file[type].fc}<br>
-        <strong>Directories:</strong> ${file[type].dc}<br>
-        <strong>Depth:</strong> ${file.r.d}`;
+      tooltip += `<strong>Size:</strong> ${humanize(file[type].s)}<br>`
+        + `<strong>Files:</strong> ${file[type].fc}<br>`
+        + `<strong>Directories:</strong> ${file[type].dc}<br>`
+        + `<strong>Depth:</strong> ${file.r.d}`;
     } else {
       tooltip += `<strong>Size:</strong> ${humanize(file.s)}`;
     }
@@ -125,37 +127,39 @@ class FileExplorer extends Component {
     const absPath = (this.getCurrentDirIndex() === 0 ? "" : files[0].p + pathSeparator) + currentDir.p;
     const children = this.getDirectChildren();
     const max = children
-      .reduce((max, i) => this.getStat(files[i]) > max ? this.getStat(files[i]) : max, 0);
-    return html`
-      <aside class="box file-explorer">
-        <div class="box-title">
+      .reduce((m, i) => this.getStat(files[i]) > m ? this.getStat(files[i]) : m, 0);
+    return (
+      <aside className="box file-explorer">
+        <div className="box-title">
           Explorer
         </div>
-        <div class="fe-title">
-          <span class="has-ellipsis tooltip-start" data-tooltip="${absPath}">
-            ${title}
+        <div className="fe-title">
+          <span className="has-ellipsis tooltip-start" data-tooltip={absPath}>
+            {title}
           </span>
-          <span class="copy" data-tooltip="Copy absolute path to the clipboard"
-                onClick="${this.copyCurrentDirPathToClipboard}">📋
-            <input type="text" id="currentDirPath" value="${absPath}"/>
+          <span className="copy" data-tooltip="Copy absolute path to the clipboard"
+                onClick={this.copyCurrentDirPathToClipboard}>📋
+            <input type="text" id="currentDirPath" value={absPath} />
           </span>
         </div>
         <ul>
-          ${this.state.stack.length > 1 ? html`
-            <li class="directory up" onClick="${() => this.up()}">
+          {this.state.stack.length > 1 ? (
+            <li className="directory up" onClick={() => this.up()}>
               ..
-            </li>` : ""}
-          ${children.map(i => {
+            </li>) : ""}
+          {children.map(i => {
             const file = files[i];
-            return html`
-              <li class="${file.t} has-tooltip" key="${i}" onClick="${() => this.navigate(i)}">
-                <span class="name has-ellipsis">${file.n}</span>
-                <span class="bar" style="width: ${this.getStat(file) * 50 / max}%"></span>
-                <span class="legend">${this.getStatText(file)}</span>
-                <span class="tooltip" innerHTML="${this.getTooltip(file)}"></span>
-              </li>`
+            return (
+              <li className={`${file.t} has-tooltip`} key={i} onClick={() => this.navigate(i)}>
+                <span className="name has-ellipsis">{file.n}</span>
+                <span className="bar" style={{ width: (this.getStat(file) * 50) / max + "%" }} />
+                <span className="legend">{this.getStatText(file)}</span>
+                <span className="tooltip" innerHTML={this.getTooltip(file)} />
+              </li>
+            );
           })}
         </ul>
-      </aside>`;
+      </aside>
+    );
   }
 }

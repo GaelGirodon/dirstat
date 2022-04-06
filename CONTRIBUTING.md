@@ -17,14 +17,13 @@ Build and run:
 
 - Build the report template ([`report/`](./report)): `npm run build`
   <br>_or_ for report template development:
-  - Create a [`data.js`](./report/src/scripts/data.js) file with some stub data
+  - Create a [`data.js`](./report/public/data.js) file with some stub data
     (e.g. from a real report):
     ```js
     var files = [/* stub data */];
     var pathSeparator = "/";
     ```
-  - Build [`template-dev.html`](./internal/report/template-dev.html):
-    `npm run build:dev`
+  - Run: `npm run dev`
 - Build and run DirStat: `go run "cmd/dirstat.go" [...]`
 
 ## Release

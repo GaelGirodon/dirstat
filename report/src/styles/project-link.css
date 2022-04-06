@@ -1,5 +1,5 @@
 /*
- * _project-link.scss
+ * project-link.css
  * Project link tag style
  */
 
@@ -16,7 +16,7 @@
   color: white !important;
   transition: background-color 0.2s ease;
 
-  // GitHub icon
+  /* GitHub icon */
   .icon {
     display: inline-block;
     overflow: hidden;

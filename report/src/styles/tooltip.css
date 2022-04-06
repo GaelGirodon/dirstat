@@ -1,9 +1,9 @@
 /*
- * _tooltip.scss
+ * tooltip.css
  * Simple CSS tooltip
  */
 
-// Tooltip with child element
+/* Tooltip with child element */
 .has-tooltip {
   position: relative;
 
@@ -16,7 +16,7 @@
   }
 }
 
-// Tooltip from attribute
+/* Tooltip from attribute */
 [data-tooltip] {
   &:before {
     content: attr(data-tooltip);
@@ -40,7 +40,7 @@
   }
 }
 
-// Tooltip common style
+/* Tooltip common style */
 .has-tooltip .tooltip, [data-tooltip]:before {
   position: absolute;
   top: 100%;
@@ -62,7 +62,7 @@
   transition: opacity 0.15s ease;
 }
 
-// Tooltip arrow
+/* Tooltip arrow */
 .has-tooltip .tooltip:after, [data-tooltip]:after {
   content: '';
   position: absolute;
@@ -83,13 +83,13 @@
  * Left-aligned
  */
 
-// Tooltip
+/* Tooltip */
 .has-tooltip.tooltip-start .tooltip, [data-tooltip].tooltip-start:before {
   left: 0;
   transform: initial;
 }
 
-// Tooltip arrow
+/* Tooltip arrow */
 .has-tooltip.tooltip-start .tooltip:after, [data-tooltip].tooltip-start:after {
   left: 8px;
   margin-left: initial;
@@ -99,14 +99,14 @@
  * Top
  */
 
-// Tooltip
+/* Tooltip */
 .has-tooltip.tooltip-top .tooltip, [data-tooltip].tooltip-top:before {
   top: initial;
   bottom: 100%;
   margin-bottom: 8px;
 }
 
-// Tooltip arrow
+/* Tooltip arrow */
 .has-tooltip.tooltip-top .tooltip:after, [data-tooltip].tooltip-top:after {
   top: initial;
   bottom: 100%;

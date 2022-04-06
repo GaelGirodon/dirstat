@@ -3,11 +3,13 @@
  * Store implementation
  */
 
+import { pick } from "./globals";
+
 /**
  * A basic state management system allowing to share a state
  * between components and to subscribe to updates.
  */
-class Store {
+export class Store {
 
   /**
    * Create a new store.

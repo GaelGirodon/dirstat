@@ -1,13 +1,16 @@
 /*
- * chart.js
+ * chart.jsx
  * Percentage bar chart component
  */
+
+import { Component } from "preact";
+import { humanize, pushGet, sharedState, shuffle } from "../globals";
 
 /**
  * A set of colors for charts
  * @type {string[]}
  */
-const COLORS = [
+const COLORS = shuffle([
   "#F44336", // Red
   "#E91E63", // Pink
   "#9C27B0", // Purple
@@ -24,18 +27,18 @@ const COLORS = [
   "#F4511E", // Deep Orange
   "#795548", // Brown
   "#607D8B", // Blue Grey
-].shuffle();
+]);
 
 /**
  * Color for the "other" category
  * @type {string}
  */
-const DEFAULT_COLOR = "rgb(200, 200, 200)";
+const DEFAULT_COLOR = "#C8C8C8";
 
 /**
  * A percentage bar chart in a box.
  */
-class Chart extends Component {
+export class Chart extends Component {
 
   constructor(props) {
     super();
@@ -65,8 +68,8 @@ class Chart extends Component {
     if (allItems.length > this.max - 1) {
       // Sum up other items in a last "other" category
       items.push(allItems.slice(this.max - 1).reduce((sum, e) => {
-        return {name: sum.name, value: sum.value + e.value}
-      }, {name: "other", value: 0}));
+        return { name: sum.name, value: sum.value + e.value };
+      }, { name: "other", value: 0 }));
     }
     return items;
   }
@@ -77,59 +80,62 @@ class Chart extends Component {
    * @returns {string|*} Value to display
    */
   label(v) {
-    return this.state.mode === "s" ? humanize(v) : v
+    return this.state.mode === "s" ? humanize(v) : v;
   }
 
   render() {
     const data = this.dataset();
     if (data.length === 0) {
-      return html`
-        <div class="box">
-          <div class="box-title tooltip-top tooltip-start" data-tooltip="${this.description}">
-            ${this.name}
+      return (
+        <div className="box">
+          <div className="box-title tooltip-top tooltip-start" data-tooltip={this.description}>
+            {this.name}
           </div>
-          <div class="no-data">No data available</div>
-        </div>`;
-    }
-    const total = data.reduce((total, item) => total + item.value, 0);
-    const used = [];
-    const colors = data.map(item => COLORS[used.pushGet(strToColor(item.name, used))[0]])
-      .slice(0, this.max - 1).concat([DEFAULT_COLOR]);
-    return html`
-      <div class="box">
-        <div class="box-title tooltip-top tooltip-start" data-tooltip="${this.description}">
-          ${this.name}
+          <div className="no-data">No data available</div>
         </div>
-        <div class="chart">
-          <div class="chart-content">
-            ${data.map((item, i) => html`
-              <div class="chart-item has-tooltip" key="${item.name}"
-                   style="width: ${item.value * 100 / total}%; background: ${colors[i % colors.length]}">
-                ${(item.value * 100 / total) >= 10
-                  ? html`<span class="chart-item-name">${item.name}</span>` : ""}
-                <div class="tooltip">
-                  <strong>${item.name}</strong><br/>
-                  ${this.label(item.value)} (${Math.round(item.value * 100 / total)}%)
+      );
+    }
+    const total = data.reduce((t, item) => t + item.value, 0);
+    const used = [];
+    const colors = data.map(item => COLORS[pushGet(used, strToColor(item.name, used))[0]])
+      .slice(0, this.max - 1).concat([DEFAULT_COLOR]);
+    return (
+      <div className="box">
+        <div className="box-title tooltip-top tooltip-start" data-tooltip={this.description}>
+          {this.name}
+        </div>
+        <div className="chart">
+          <div className="chart-content">
+            {data.map((item, i) => (
+              <div className="chart-item has-tooltip" key={item.name}
+                   style={{
+                     width: (item.value * 100) / total + "%",
+                     background: colors[i % colors.length]
+                   }}>
+                {(item.value * 100) / total >= 10
+                  ? (<span className="chart-item-name">{item.name}</span>) : ""}
+                <div className="tooltip">
+                  <strong>{item.name}</strong><br />
+                  {this.label(item.value)} ({Math.round((item.value * 100) / total)}%)
                 </div>
-              </div>`)}
+              </div>))}
           </div>
-          <div class="chart-legend">
-            ${data.map((item, i) => html`
-              <div class="chart-legend-item has-tooltip">
-                <span class="chart-legend-item-color"
-                      style="background: ${colors[i % colors.length]}"></span>
-                <span class="chart-legend-item-name">${item.name}</span>
-                <div class="tooltip">
-                  ${this.label(item.value)}
-                    (${Math.round(item.value * 100 / total)}%)
+          <div className="chart-legend">
+            {data.map((item, i) => (
+              <div className="chart-legend-item has-tooltip">
+                <span className="chart-legend-item-color"
+                      style={{ background: colors[i % colors.length] }} />
+                <span className="chart-legend-item-name">{item.name}</span>
+                <div className="tooltip">
+                  {this.label(item.value)} ({Math.round((item.value * 100) / total)}%)
                 </div>
-              </div>`)}
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    `;
+    );
   }
-
 }
 
 /**
