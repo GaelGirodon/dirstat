@@ -64,7 +64,7 @@
 
 /* Tooltip arrow */
 .has-tooltip .tooltip:after, [data-tooltip]:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -84,13 +84,15 @@
  */
 
 /* Tooltip */
-.has-tooltip.tooltip-start .tooltip, [data-tooltip].tooltip-start:before {
+.has-tooltip.tooltip-start .tooltip,
+[data-tooltip].tooltip-start:before {
   left: 0;
   transform: initial;
 }
 
 /* Tooltip arrow */
-.has-tooltip.tooltip-start .tooltip:after, [data-tooltip].tooltip-start:after {
+.has-tooltip.tooltip-start .tooltip:after,
+[data-tooltip].tooltip-start:after {
   left: 8px;
   margin-left: initial;
 }
@@ -100,14 +102,16 @@
  */
 
 /* Tooltip */
-.has-tooltip.tooltip-top .tooltip, [data-tooltip].tooltip-top:before {
+.has-tooltip.tooltip-top .tooltip,
+[data-tooltip].tooltip-top:before {
   top: initial;
   bottom: 100%;
   margin-bottom: 8px;
 }
 
 /* Tooltip arrow */
-.has-tooltip.tooltip-top .tooltip:after, [data-tooltip].tooltip-top:after {
+.has-tooltip.tooltip-top .tooltip:after,
+[data-tooltip].tooltip-top:after {
   top: initial;
   bottom: 100%;
   margin-bottom: 3px;

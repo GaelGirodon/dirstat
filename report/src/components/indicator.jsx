@@ -43,5 +43,4 @@ export class Indicator extends Component {
       </div>
     );
   }
-
 }

@@ -6,45 +6,45 @@
   <title>DirStat report</title>
 </head>
 <body>
-<main>
-  <div class="section">
-    <div class="container-fluid">
-      <div class="columns mb-5">
-        <div class="column">
-          <h1 class="title">
-            🗂️ DirStat report
-            <a href="https://github.com/GaelGirodon/dirstat" class="project-link tooltip-start"
-               data-tooltip="Open the DirStat project page">
-              <span class="icon">
-                <img alt="GitHub icon" width="16" height="16"
-                     src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA2Ny43MzMgNjcuNzMzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTIyOS4yNykiPjxnIHRyYW5zZm9ybT0ibWF0cml4KDIuMDc5IDAgMCAtMi4wNzkgMzMuODY0IDIzMC4xKSI+PHBhdGggZD0ibTAgMGMtOC45OTUgMC0xNi4yODgtNy4yOTMtMTYuMjg4LTE2LjI5IDAtNy4xOTcgNC42NjctMTMuMzAyIDExLjE0LTE1LjQ1NyAwLjgxNS0wLjE0OSAxLjExMiAwLjM1NCAxLjExMiAwLjc4NiAwIDAuMzg2LTAuMDE0IDEuNDExLTAuMDIyIDIuNzctNC41MzEtMC45ODQtNS40ODcgMi4xODQtNS40ODcgMi4xODQtMC43NDEgMS44ODEtMS44MDkgMi4zODItMS44MDkgMi4zODItMS40NzkgMS4wMTEgMC4xMTIgMC45OTEgMC4xMTIgMC45OTEgMS42MzUtMC4xMTYgMi40OTUtMS42NzkgMi40OTUtMS42NzkgMS40NTMtMi40ODkgMy44MTMtMS43NyA0Ljc0MS0xLjM1NCAwLjE0OCAxLjA1MyAwLjU2OCAxLjc3MSAxLjAzNCAyLjE3OC0zLjYxNyAwLjQxMS03LjQyIDEuODA5LTcuNDIgOC4wNTEgMCAxLjc3OCAwLjYzNSAzLjIzMiAxLjY3NyA0LjM3MS0wLjE2OCAwLjQxMi0wLjcyNyAyLjA2OCAwLjE1OSA0LjMxMSAwIDAgMS4zNjggMC40MzggNC40OC0xLjY3IDEuMjk5IDAuMzYxIDIuNjkzIDAuNTQyIDQuMDc4IDAuNTQ4IDEuMzgzLTZlLTMgMi43NzctMC4xODcgNC4wNzgtMC41NDggMy4xMSAyLjEwOCA0LjQ3NSAxLjY3IDQuNDc1IDEuNjcgMC44ODktMi4yNDMgMC4zMy0zLjg5OSAwLjE2Mi00LjMxMSAxLjA0NC0xLjEzOSAxLjY3NS0yLjU5MyAxLjY3NS00LjM3MSAwLTYuMjU4LTMuODA5LTcuNjM1LTcuNDM4LTguMDM4IDAuNTg1LTAuNTAzIDEuMTA2LTEuNDk3IDEuMTA2LTMuMDE3IDAtMi4xNzctMC4wMi0zLjkzNC0wLjAyLTQuNDY4IDAtMC40MzYgMC4yOTMtMC45NDMgMS4xMi0wLjc4NCA2LjQ2OCAyLjE1OSAxMS4xMzEgOC4yNiAxMS4xMzEgMTUuNDU1IDAgOC45OTctNy4yOTQgMTYuMjktMTYuMjkxIDE2LjI5IiBmaWxsPSIjZmZmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L2c+PC9nPjwvc3ZnPgo=">
-              </span><span class="version"><!-- {version} --></span>
-            </a>
-          </h1>
-          <h2 class="subtitle"><!-- {path} --></h2>
-        </div>
-        <div class="column is-narrow" id="modeSelector"></div>
-      </div>
-      <div class="columns">
-        <div class="column is-4" id="fileExplorer"></div>
-        <div class="column is-8">
-          <div class="columns is-mobile is-multiline">
-            <div class="column is-3-desktop is-6-mobile" id="sizeIndicator"></div>
-            <div class="column is-3-desktop is-6-mobile" id="filesIndicator"></div>
-            <div class="column is-3-desktop is-6-mobile" id="directoriesIndicator"></div>
-            <div class="column is-3-desktop is-6-mobile" id="depthIndicator"></div>
+  <main>
+    <div class="section">
+      <div class="container-fluid">
+        <div class="columns mb-5">
+          <div class="column">
+            <h1 class="title">
+              🗂️ DirStat report
+              <a href="https://github.com/GaelGirodon/dirstat" class="project-link tooltip-start"
+                 data-tooltip="Open the DirStat project page">
+                <span class="icon">
+                  <img alt="GitHub icon" width="16" height="16" src="/src/assets/github.svg" />
+                </span>
+                <span class="version"><!-- {version} --></span>
+              </a>
+            </h1>
+            <h2 class="subtitle"><!-- {path} --></h2>
           </div>
-          <div class="columns is-multiline">
-            <div class="column is-12" id="childrenChart"></div>
-            <div class="column is-6" id="extensionsChart"></div>
-            <div class="column is-6" id="yearsChart"></div>
+          <div class="column is-narrow" id="modeSelector"></div>
+        </div>
+        <div class="columns">
+          <div class="column is-4" id="fileExplorer"></div>
+          <div class="column is-8">
+            <div class="columns is-mobile is-multiline">
+              <div class="column is-3-desktop is-6-mobile" id="sizeIndicator"></div>
+              <div class="column is-3-desktop is-6-mobile" id="filesIndicator"></div>
+              <div class="column is-3-desktop is-6-mobile" id="directoriesIndicator"></div>
+              <div class="column is-3-desktop is-6-mobile" id="depthIndicator"></div>
+            </div>
+            <div class="columns is-multiline">
+              <div class="column is-12" id="childrenChart"></div>
+              <div class="column is-6" id="extensionsChart"></div>
+              <div class="column is-6" id="yearsChart"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</main>
-<!-- {data} -->
-<script type="module" src="/src/main.jsx"></script>
+  </main>
+  <!-- {data} -->
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

@@ -6,4 +6,4 @@ module.exports = {
       content: ["./**/*.html", "./**/*.jsx"]
     })
   ]
-}
+};

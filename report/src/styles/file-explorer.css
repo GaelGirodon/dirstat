@@ -64,17 +64,17 @@
       }
 
       &::before {
-        content: '\1F4C1';
+        content: "\1F4C1";
         list-style: none;
         margin: 0 6px;
       }
 
       &.file::before {
-        content: '\1F4C4';
+        content: "\1F4C4";
       }
 
       &.up::before {
-        content: '\2B05\FE0F';
+        content: "\2B05\FE0F";
       }
 
       .name {

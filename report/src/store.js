@@ -47,5 +47,4 @@ export class Store {
   value(...keys) {
     return keys?.length ? pick(this.state, ...keys) : this.state;
   }
-
 }

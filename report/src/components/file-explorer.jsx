@@ -96,20 +96,23 @@ export class FileExplorer extends Component {
   /**
    * Get the tooltip content for a given file.
    * @param file File for which to generate the tooltip content
-   * @returns {string} Tooltip HTML content
+   * @returns Tooltip content
    */
   getTooltip(file) {
-    let tooltip = "";
     if (file.t === "dir") {
       const type = this.state.recursive ? "r" : "d";
-      tooltip += `<strong>Size:</strong> ${humanize(file[type].s)}<br>`
-        + `<strong>Files:</strong> ${file[type].fc}<br>`
-        + `<strong>Directories:</strong> ${file[type].dc}<br>`
-        + `<strong>Depth:</strong> ${file.r.d}`;
-    } else {
-      tooltip += `<strong>Size:</strong> ${humanize(file.s)}`;
+      return (<>
+        <strong>Size:</strong> {humanize(file[type].s)}<br />
+        <strong>Files:</strong> {file[type].fc}<br />
+        <strong>Directories:</strong> {file[type].dc}<br />
+        <strong>Depth:</strong> {file.r.d}<br />
+        <strong>Last modif.:</strong> {file.m.replace(/[TZ]/g, " ").trim()}
+      </>);
     }
-    return tooltip + `<br><strong>Last modif.:</strong> ${file.m.replace(/[TZ]/g, " ").trim()}`;
+    return (<>
+      <strong>Size:</strong> {humanize(file.s)}<br />
+      <strong>Last modif.:</strong> {file.m.replace(/[TZ]/g, " ").trim()}
+    </>);
   }
 
   /**
@@ -127,7 +130,7 @@ export class FileExplorer extends Component {
     const absPath = (this.getCurrentDirIndex() === 0 ? "" : files[0].p + pathSeparator) + currentDir.p;
     const children = this.getDirectChildren();
     const max = children
-      .reduce((m, i) => this.getStat(files[i]) > m ? this.getStat(files[i]) : m, 0);
+      .reduce((m, i) => (this.getStat(files[i]) > m ? this.getStat(files[i]) : m), 0);
     return (
       <aside className="box file-explorer">
         <div className="box-title">
@@ -154,7 +157,7 @@ export class FileExplorer extends Component {
                 <span className="name has-ellipsis">{file.n}</span>
                 <span className="bar" style={{ width: (this.getStat(file) * 50) / max + "%" }} />
                 <span className="legend">{this.getStatText(file)}</span>
-                <span className="tooltip" innerHTML={this.getTooltip(file)} />
+                <span className="tooltip">{this.getTooltip(file)}</span>
               </li>
             );
           })}
