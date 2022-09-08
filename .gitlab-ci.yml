@@ -24,7 +24,7 @@ build:report:
 
 build:
   stage: build
-  image: golang:1.18
+  image: golang:1.19
   script:
     - GOARCH=amd64 GOOS=linux   go build -ldflags="-s -w" -o "dirstat"     "cmd/dirstat.go"
     - GOARCH=amd64 GOOS=windows go build -ldflags="-s -w" -o "dirstat.exe" "cmd/dirstat.go"

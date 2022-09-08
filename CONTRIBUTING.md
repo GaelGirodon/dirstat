@@ -5,7 +5,7 @@
 Install global dependencies:
 
 - Node.js LTS
-- Go >= 1.18
+- Go >= 1.19
 
 Install project dependencies:
 
