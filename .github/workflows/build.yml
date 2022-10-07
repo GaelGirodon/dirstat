@@ -1,0 +1,55 @@
+name: build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+          cache-dependency-path: report/package-lock.json
+
+      - name: Build report
+        run: |
+          npm ci
+          npm run build
+        working-directory: ./report
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+
+      - name: Build (Linux)
+        run: go build -ldflags="-s -w" -o "dirstat" "cmd/dirstat.go"
+        env: { GOARCH: amd64, GOOS: linux }
+
+      - name: Build (Windows)
+        run: go build -ldflags="-s -w" -o "dirstat.exe" "cmd/dirstat.go"
+        env: { GOARCH: amd64, GOOS: windows }
+
+      - name: Package (Linux)
+        run: |
+          archive=dirstat_linux_amd64.tar.gz
+          tar zcvf "${archive}" dirstat
+          sha256sum "${archive}" | cut -d' ' -f 1 > "${archive}.sha256"
+
+      - name: Package (Windows)
+        shell: pwsh
+        run: |
+          $archive = 'dirstat_windows_amd64.zip'
+          Compress-Archive 'dirstat.exe' -DestinationPath "$archive" -CompressionLevel 'Optimal'
+          $hash = (Get-FileHash -Algorithm 'SHA256' "$archive").Hash.ToLower()
+          Set-Content -Path "$archive.sha256" -Value "$hash`n" -Encoding 'ascii' -NoNewline
+
+      - name: Publish artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dirstat
+          path: dirstat_*_*.*

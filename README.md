@@ -1,8 +1,8 @@
 # DirStat
 
-[![release](https://img.shields.io/github/v/release/GaelGirodon/dirstat?style=flat-square)](https://github.com/GaelGirodon/dirstat/releases)
-[![license](https://img.shields.io/github/license/GaelGirodon/dirstat?color=informational&style=flat-square)](https://github.com/GaelGirodon/dirstat/blob/master/LICENSE)
-[![build](https://img.shields.io/gitlab/pipeline/GaelGirodon/dirstat/develop?style=flat-square)](https://gitlab.com/GaelGirodon/dirstat/-/pipelines/latest)
+[![release](https://img.shields.io/github/v/release/GaelGirodon/dirstat?style=flat-square)](https://github.com/GaelGirodon/dirstat/releases/latest)
+[![license](https://img.shields.io/github/license/GaelGirodon/dirstat?color=blue&style=flat-square)](./LICENSE)
+[![build](https://img.shields.io/github/workflow/status/GaelGirodon/dirstat/build?style=flat-square)](https://github.com/GaelGirodon/dirstat/actions/workflows/build.yml)
 
 A simple tool that helps to clean up directories by scanning them and generating interactive
 statistics reports.
