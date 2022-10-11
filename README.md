@@ -92,7 +92,7 @@ Press the Enter key to open the report and exit...
 - `dirstat-report.html`: the interactive graphical HTML report
 - `dirstat-report.json`: raw directory statistics
 
-![HTML report screenshot](https://user-images.githubusercontent.com/10748287/131232594-9bba83fe-45d5-44fe-993a-d162ffd25fde.png)
+![HTML report screenshot](https://user-images.githubusercontent.com/10748287/195948827-cab2cab1-cb27-4b7b-849d-968f910b65f0.png)
 
 ## License
 

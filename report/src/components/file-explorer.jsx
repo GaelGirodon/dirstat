@@ -13,7 +13,11 @@ export class FileExplorer extends Component {
 
   constructor() {
     super();
-    this.state = { stack: [0], ...sharedState.value("recursive", "mode") };
+    this.state = {
+      stack: [0],
+      sort: { type: "name", order: 1 },
+      ...sharedState.value("recursive", "mode")
+    };
     sharedState.subscribe((s, keys) => {
       if (keys.some(k => k === "recursive" || k === "mode")) {
         this.setState({ ...this.state, ...s.value("recursive", "mode") });
@@ -66,8 +70,13 @@ export class FileExplorer extends Component {
    */
   getDirectChildren() {
     return this.getCurrentDir().d.c.slice()
-      .sort((f1, f2) => (files[f1].t[0] + files[f1].n)
-        .localeCompare(files[f2].t[0] + files[f2].n));
+      .sort((f1, f2) => {
+        const sort = files[f1].t[0].localeCompare(files[f2].t[0]);
+        if (sort !== 0) return sort; // Directories before regular files
+        return this.state.sort.order * (this.state.sort.type === "name"
+          ? files[f1].n.localeCompare(files[f2].n)
+          : this.getStat(files[f1]) - this.getStat(files[f2]));
+      });
   }
 
   /**
@@ -116,6 +125,23 @@ export class FileExplorer extends Component {
   }
 
   /**
+   * Toggle between sort types (file name or current statistic).
+   */
+  toggleSortType() {
+    const sort = this.state.sort.type === "name"
+      ? { type: "stat", order: -1 } : { type: "name", order: 1 };
+    this.setState({ ...this.state, sort });
+  }
+
+  /**
+   * Toggle between sort orders (ascending or descending).
+   */
+  toggleSortOrder() {
+    const order = -this.state.sort.order;
+    this.setState({ ...this.state, sort: { ...this.state.sort, order } });
+  }
+
+  /**
    * Copy the current directory absolute path to the clipboard.
    */
   copyCurrentDirPathToClipboard() {
@@ -136,12 +162,20 @@ export class FileExplorer extends Component {
         <div className="box-title">
           Explorer
         </div>
-        <div className="fe-title">
-          <span className="has-ellipsis tooltip-start" data-tooltip={absPath}>
+        <div className="fe-header">
+          <span className="fe-title has-ellipsis tooltip-start" data-tooltip={absPath}>
             {title}
           </span>
-          <span className="copy" data-tooltip="Copy absolute path to the clipboard"
-                onClick={this.copyCurrentDirPathToClipboard}>📋
+          <span data-tooltip={"Sort by " + (this.state.sort.type === "name" ? "statistic" : "name")}
+                className="fe-btn" onClick={() => this.toggleSortType()}>
+            {this.state.sort.type === "name" ? "🔠" : "🔢"}
+          </span>
+          <span data-tooltip={"Sort " + (this.state.sort.order > 0 ? "descending" : "ascending")}
+                className="fe-btn" onClick={() => this.toggleSortOrder()}>
+            {this.state.sort.order > 0 ? "🔼" : "🔽"}
+          </span>
+          <span data-tooltip="Copy absolute path to the clipboard"
+                className="fe-btn copy" onClick={this.copyCurrentDirPathToClipboard}>📋
             <input type="text" id="currentDirPath" value={absPath} />
           </span>
         </div>

@@ -33,6 +33,6 @@ Build and run:
   - [`package.json`](./report/package.json) (+ `npm install`)
 - Update the [changelog](./CHANGELOG.md)
 - Commit changes: `git commit -a -m "Release X.Y.Z"`
-- Merge `develop` in `master`: `git switch master && git merge develop --ff-only`
+- Merge `develop` in `main`: `git switch main && git merge develop --ff-only`
 - Create the tag: `git tag "X.Y.Z" -a -m "X.Y.Z"`
 - Push to the repository: `git push --all origin && git push --tags`
