@@ -1,6 +1,6 @@
 {
   "name": "dirstat-report",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "DirStat HTML report template",
   "author": "Gael Girodon <contact@gaelgirodon.fr>",
   "license": "GPL-3.0-or-later",
