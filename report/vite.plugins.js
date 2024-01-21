@@ -30,9 +30,9 @@ export function publishPlugin() {
     name: "publish",
     writeBundle(_options, bundle) {
       const html = bundle["index.html"].source
-        .replace(/<script[^>]+ src="\/([^"]+\.js)"><\/script>/g,
+        .replace(/<script[^>]* src="\/([^"]+\.js)"[^>]*><\/script>/g,
           (_, src) => `<script type="module">${bundle[src].code.trim()}</script>`)
-        .replace(/<link rel="stylesheet" href="\/([^"]+\.css)">/g,
+        .replace(/<link[^>]* rel="stylesheet"[^>]* href="\/([^"]+\.css)">/g,
           (_, href) => `<style>${bundle[href].source.trim()}</style>`)
         .replace(/<img ([^>]+) src="\/([^"]+\.svg)" \/>/g, (_, attr, src) => {
           const value = bundle[src].source.toString("base64");
