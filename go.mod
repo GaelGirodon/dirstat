@@ -1,3 +1,3 @@
 module github.com/gaelgirodon/dirstat
 
-go 1.22
+go 1.23

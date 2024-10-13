@@ -6,10 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
@@ -22,9 +22,10 @@ jobs:
         working-directory: ./report
 
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
+          cache: false # No dependency
 
       - name: Build (Linux)
         run: go build -ldflags="-s -w" -o "dirstat" "cmd/dirstat.go"
@@ -49,7 +50,7 @@ jobs:
           Set-Content -Path "$archive.sha256" -Value "$hash`n" -Encoding 'ascii' -NoNewline
 
       - name: Publish artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dirstat
           path: dirstat_*_*.*
