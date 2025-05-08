@@ -187,7 +187,7 @@ export class FileExplorer extends Component {
           {children.map(i => {
             const file = files[i];
             return (
-              <li className={`${file.t} has-tooltip`} key={i} onClick={() => this.navigate(i)}>
+              <li className={`fe-${file.t} has-tooltip`} key={i} onClick={() => this.navigate(i)}>
                 <span className="name has-ellipsis">{file.n}</span>
                 <span className="bar" style={{ width: (this.getStat(file) * 50) / max + "%" }} />
                 <span className="legend">{this.getStatText(file)}</span>

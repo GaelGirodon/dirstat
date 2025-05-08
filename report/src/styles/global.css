@@ -9,6 +9,6 @@ html, body {
 }
 
 /* Subtitle margin customization */
-.title:not(.is-spaced) + .subtitle {
+.title + .subtitle {
   margin-top: -0.75rem;
 }

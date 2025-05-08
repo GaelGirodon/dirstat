@@ -65,7 +65,7 @@
         background-color: #e5e5e5;
       }
 
-      &.dir, &.up {
+      &.fe-dir, &.up {
         cursor: pointer;
       }
 
@@ -75,7 +75,7 @@
         margin: 0 6px;
       }
 
-      &.file::before {
+      &.fe-file::before {
         content: "\1F4C4";
       }
 

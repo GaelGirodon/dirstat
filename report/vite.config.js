@@ -7,17 +7,20 @@ import { purgeCSSPlugin } from "@fullhuman/postcss-purgecss";
 import { publishPlugin, stubPlugin } from "./vite.plugins";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [preact(), stubPlugin(), publishPlugin()],
   css: {
     postcss: {
       plugins: [
         autoprefixer,
         nested,
-        purgeCSSPlugin({
-          content: ["./**/*.html", "./**/*.jsx"]
-        })
+        ...(mode === "development" ? [] : [
+          purgeCSSPlugin({
+            content: ["./**/*.html", "./**/*.jsx"],
+            safelist: ["fe-dir", "fe-file"]
+          })
+        ])
       ]
     }
   }
-});
+}));
