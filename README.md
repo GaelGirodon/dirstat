@@ -9,7 +9,7 @@ statistics reports.
 
 ## About
 
-**DirStat** is a lightweight command-line tool (< 1 MB). It allows to scan a directory that needs to
+**DirStat** is a lightweight command-line tool. It allows to scan a directory that needs to
 be cleaned up, collect statistics about it and make them easily browsable by generating an
 [interactive graphical HTML report](#report).
 

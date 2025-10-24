@@ -6,7 +6,7 @@
 .chart {
 
   .chart-content {
-    text-wrap: none;
+    text-wrap: nowrap;
     margin-top: 24px;
     white-space: nowrap;
 
