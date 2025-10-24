@@ -17,6 +17,7 @@ import (
 const reportName = "dirstat-report"
 
 // reportTemplate is the HTML report template.
+//
 //go:embed template.html
 var reportTemplate string
 

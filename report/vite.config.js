@@ -17,7 +17,8 @@ export default defineConfig(({ mode }) => ({
         ...(mode === "development" ? [] : [
           purgeCSSPlugin({
             content: ["./**/*.html", "./**/*.jsx"],
-            safelist: ["fe-dir", "fe-file"]
+            safelist: ["fe-dir", "fe-file"],
+            variables: true
           })
         ])
       ]
