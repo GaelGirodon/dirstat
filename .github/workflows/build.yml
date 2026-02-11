@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
@@ -50,7 +50,7 @@ jobs:
           Set-Content -Path "$archive.sha256" -Value "$hash`n" -Encoding 'ascii' -NoNewline
 
       - name: Publish artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: dirstat
           path: dirstat_*_*.*
