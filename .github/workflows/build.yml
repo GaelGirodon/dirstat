@@ -50,7 +50,7 @@ jobs:
           Set-Content -Path "$archive.sha256" -Value "$hash`n" -Encoding 'ascii' -NoNewline
 
       - name: Publish artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: dirstat
           path: dirstat_*_*.*
