@@ -13,13 +13,13 @@
   },
   "dependencies": {
     "bulma": "^1.0.4",
-    "preact": "^10.29.1"
+    "preact": "^10.29.7"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^8.0.0",
-    "@preact/preset-vite": "^2.10.5",
-    "autoprefixer": "^10.4.27",
+    "@preact/preset-vite": "^2.10.6",
+    "autoprefixer": "^10.5.4",
     "postcss-nested": "^7.0.2",
-    "vite": "^7.3.2"
+    "vite": "^8.1.5"
   }
 }
