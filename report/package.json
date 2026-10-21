@@ -18,8 +18,8 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^8.0.0",
     "@preact/preset-vite": "^2.10.6",
-    "autoprefixer": "^10.5.4",
+    "autoprefixer": "^10.6.1",
     "postcss-nested": "^8.0.1",
-    "vite": "^8.2.2"
+    "vite": "^8.3.4"
   }
 }
